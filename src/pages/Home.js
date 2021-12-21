@@ -1,42 +1,103 @@
-import React from "react";
-import {Row, Col} from 'react-bootstrap'
+import {useEffect, React} from "react";
+import {Row, Col, Form, Button, Card, CardGroup} from 'react-bootstrap'
 import '../App.css'
 
+import bg1 from '../images/bg1.jpg'
+import bg2 from '../images/bg4.jpg'
+import bg3 from '../images/bg3.jpg'
+import bg5 from '../images/bg5.jpg'
+import bg6 from '../images/bg6.jpg'
+import bg7 from '../images/bg7.jpg'
 
 import AppNavBar from '../components/AppNavBar'
 import CarouselComp from '../components/CarouselComp'
 import Footer from '../components/Footer'
 
+// Aos 
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function Home() {
+
+  useEffect(() => {
+    Aos.init({});
+
+  }, [])
+
   return (
   	<div>
   	<AppNavBar/>
   	<div id="mainBody">
-   <CarouselComp/>
-     <div md="6"className="text-center mt-5">
-     	<Row className="justify-content-center">
-     		<Col md="6" sm="12">
-     		<h2>Title Here</h2>
-     		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vitae consequuntur quam explicabo quis, sit eum molestiae, iusto porro. Facilis, explicabo eos deserunt labore totam nam necessitatibus, dolores adipisci eveniet.</p>
-     		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vitae consequuntur quam explicabo quis, sit eum molestiae, iusto porro. Facilis, explicabo eos deserunt labore totam nam necessitatibus, dolores adipisci eveniet.</p>
-     		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vitae consequuntur quam explicabo quis, sit eum molestiae, iusto porro. Facilis, explicabo eos deserunt labore totam nam necessitatibus, dolores adipisci eveniet.</p>
+     <div md="8" sm="12" className=" mt-5 " id="container">
+     	<Row >
+     		<Col lg="6" md="8" className="my-5 mx-auto">
+     		   <CarouselComp/>
      		</Col>
-     		<Col md="6" sm="12">
-     		<h2>Title Here</h2>
-     		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vitae consequuntur quam explicabo quis, sit eum molestiae, iusto porro. Facilis, explicabo eos deserunt labore totam nam necessitatibus, dolores adipisci eveniet.</p>
-     		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vitae consequuntur quam explicabo quis, sit eum molestiae, iusto porro. Facilis, explicabo eos deserunt labore totam nam necessitatibus, dolores adipisci eveniet.</p>
-     		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vitae consequuntur quam explicabo quis, sit eum molestiae, iusto porro. Facilis, explicabo eos deserunt labore totam nam necessitatibus, dolores adipisci eveniet.</p>
-     		</Col>
-     		<Col md="8" sm="12" >
-     		<h2>Title Here</h2>
-     		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vitae consequuntur quam explicabo quis, sit eum molestiae, iusto porro. Facilis, explicabo eos deserunt labore totam nam necessitatibus, dolores adipisci eveniet.</p>
-     		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vitae consequuntur quam explicabo quis, sit eum molestiae, iusto porro. Facilis, explicabo eos deserunt labore totam nam necessitatibus, dolores adipisci eveniet.</p>
-     		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vitae consequuntur quam explicabo quis, sit eum molestiae, iusto porro. Facilis, explicabo eos deserunt labore totam nam necessitatibus, dolores adipisci eveniet.</p>
-     		</Col>
+        <Col lg="3" md="8" id="LoginForm" className="my-5 mx-auto py-5">
+          <Form>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+            <Button variant="success" type="submit">
+              Login
+            </Button>
+          </Form>
+        </Col>
      	</Row>
-     	
      </div>
+     <div id="divider"></div>
+     <div className="mt-5">
+      <h1 className="text-center mb-5">MEET FUN PEOPLE. DO FUN THINGS.</h1>
+      </div>
+     <div md="12" className=" d-flex justify-content-center "id="activityTab">
+    
+        <Row>
+          <CardGroup >
+             <Col lg="3" md="7" className="mx-auto my-5 cardItem">
+            <Card data-aos="fade-up" data-aos-anchor-placement="top-bottom"  data-aos-duration="1500">
+              <Card.Img variant="top" src={bg5} />
+              <Card.Body>
+                <Card.Title>Activity one</Card.Title>
+                <Card.Text>
+                   Lorem ipsum dolor sit amet consectetur adipisicing, elit. Placeat amet eaque quisquam quas, quos, iusto ex error et necessitatibus distinctio qui. Quidem reprehenderit aperiam possimus suscipit corporis nesciunt. Facilis, repellat?
+                </Card.Text>
+              </Card.Body>
+            </Card>
+            </Col>
+             <Col lg="3" md="7" className="mx-auto my-5 cardItem">
+            <Card data-aos="fade-up" data-aos-anchor-placement="top-bottom"  data-aos-duration="1500">
+              <Card.Img variant="top" src={bg6} />
+              <Card.Body>
+                <Card.Title>Activity two</Card.Title>
+                <Card.Text>
+                   Lorem ipsum dolor sit amet consectetur adipisicing, elit. Placeat amet eaque quisquam quas, quos, iusto ex error et necessitatibus distinctio qui. Quidem reprehenderit aperiam possimus suscipit corporis nesciunt. Facilis, repellat?
+                </Card.Text>
+              </Card.Body>
+            </Card>
+            </Col>
+             <Col lg="3" md="7" className="mx-auto my-5 cardItem">
+            <Card  data-aos="fade-up" data-aos-anchor-placement="top-bottom"  data-aos-duration="1500">
+              <Card.Img variant="top" src={bg7} />
+              <Card.Body>
+                <Card.Title>Activity three</Card.Title>
+                <Card.Text>
+                  Lorem ipsum dolor sit amet consectetur adipisicing, elit. Placeat amet eaque quisquam quas, quos, iusto ex error et necessitatibus distinctio qui. Quidem reprehenderit aperiam possimus suscipit corporis nesciunt. Facilis, repellat?
+                </Card.Text>
+              </Card.Body>
+            </Card>
+            </Col>
+          </CardGroup>
+        </Row>
+      </div>
    </div>
     <Footer/>
    </div>

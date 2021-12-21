@@ -7,8 +7,8 @@ import bg3 from '../images/bg3.jpg'
 
 function CarouselComp() {
   return ( 
-     <Carousel id="carousel" >
-  <Carousel.Item interval={2000} className="item">
+     <Carousel id="carousel" controls={false} indicators={false}>
+  <Carousel.Item interval={2500} className="item">
     <img
       className="d-block w-100"
       src={bg1}
@@ -19,7 +19,7 @@ function CarouselComp() {
       <h4>Nulla vitae elit libero, a pharetra augue mollis interdum.</h4>
     </Carousel.Caption>
   </Carousel.Item>
-  <Carousel.Item interval={2000} className="item">
+  <Carousel.Item interval={2500} className="item">
     <img
       className="d-block w-100"
       src={bg2}
@@ -30,7 +30,7 @@ function CarouselComp() {
       <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h4>
     </Carousel.Caption>
   </Carousel.Item>
-  <Carousel.Item interval={2000} className="item">
+  <Carousel.Item interval={2500} className="item">
     <img
       className="d-block w-100"
       src={bg3}
@@ -42,6 +42,7 @@ function CarouselComp() {
     </Carousel.Caption>
   </Carousel.Item>
 </Carousel>
+
   )
 }
 

@@ -3,6 +3,10 @@
   margin: 0px;
   box-sizing: border-box;
 }
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
 /*Footer*/
 #mainBody{
@@ -21,7 +25,9 @@
   
 }
 
+.carousel-caption{
 
+}
 
 #navbar{
   background-color: #0e1b27;
@@ -37,6 +43,7 @@
   object-fit: cover;
   object-position: 50% 50%;
   overflow: hidden;
+  transition: opacity 1s ease-in-out;
 }
 
 .caption-text{
@@ -47,5 +54,27 @@
  font-weight: bold;
 }
 
+/*Container*/
+#container {
+  background-color: #f4f4f4;
+  box-shadow: 5px 10px #bfbfbf;
+  border-radius: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#LoginForm{
+  background-color: white;
+}
 
 
+
+
+#divider{
+      margin: 50px;
+     border-top: 5px solid #0e1b27;
+}
+
+.cardItem:hover{
+   transform: scale(1.05);
+}
