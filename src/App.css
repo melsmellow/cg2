@@ -1,0 +1,51 @@
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+/*Footer*/
+#mainBody{
+  min-height: calc(100vh - 34px);
+}
+#footer {
+  background-color: #0e1b27;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  
+}
+
+#tagline{
+  margin-left: -110px;
+  
+}
+
+
+
+#navbar{
+  background-color: #0e1b27;
+}
+
+/*Carousel*/
+#carousel{
+  width:100%;
+}
+
+#carousel .item{
+
+  object-fit: cover;
+  object-position: 50% 50%;
+  overflow: hidden;
+}
+
+.caption-text{
+ text-shadow: 2px 2px 5px black;
+}
+
+.caption-text h1{
+ font-weight: bold;
+}
+
+
+
