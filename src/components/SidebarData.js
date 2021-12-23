@@ -9,27 +9,27 @@ export const SidebarData = [
 	{
 		title: "Home",
 		icon: <HomeIcon />,
-		link: "/"
+		link: "home"
 	},
 	{
 		title: "Dashboard",
 		icon: <DashboardIcon />,
-		link: "/dashboard"
+		link: "dashboard"
 	},
 	{
 		title: "Staff",
 		icon: <BadgeIcon />,
-		link: "/staff"
+		link: "staff"
 	},
 	{
 		title: "Tenants",
 		icon: <ElderlyIcon />,
-		link: "/tenant"
+		link: "tenant"
 	},
 	{
 		title: "Rooms",
 		icon: <RoomServiceIcon />,
-		link: "/room"
+		link: "room"
 	}
 
 ]

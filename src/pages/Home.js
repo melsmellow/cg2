@@ -1,6 +1,8 @@
 import {useEffect, React} from "react";
 import {Row, Col, Form, Button, Card, CardGroup} from 'react-bootstrap'
 import '../App.css'
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import bg5 from '../images/bg5.jpg'
 import bg6 from '../images/bg6.jpg'
@@ -15,6 +17,19 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 
 function Home() {
+
+  const navigate = useNavigate();
+
+
+  const loginUser = () => {
+      Swal.fire({
+      title: 'Login successfully',
+      icon: 'success',
+      text: 'Welcome'
+    })
+
+    navigate("/dashboard")
+  }
 
   useEffect(() => {
     Aos.init({});
@@ -31,7 +46,7 @@ function Home() {
      		   <CarouselComp/>
      		</Col>
         <Col lg="3" md="8" id="LoginForm" className="my-5 mx-auto py-5">
-          <Form>
+          <Form onSubmit={(e) => loginUser(e)}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" />
