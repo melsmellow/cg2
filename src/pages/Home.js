@@ -2,9 +2,6 @@ import {useEffect, React} from "react";
 import {Row, Col, Form, Button, Card, CardGroup} from 'react-bootstrap'
 import '../App.css'
 
-import bg1 from '../images/bg1.jpg'
-import bg2 from '../images/bg4.jpg'
-import bg3 from '../images/bg3.jpg'
 import bg5 from '../images/bg5.jpg'
 import bg6 from '../images/bg6.jpg'
 import bg7 from '../images/bg7.jpg'

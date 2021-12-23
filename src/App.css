@@ -1,7 +1,13 @@
+.App{
+  width: 100vw;
+  height: 100vh;
+}
+
 *{
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
+
 }
 body {
     max-width: 100%;
@@ -68,13 +74,108 @@ body {
 }
 
 
-
-
 #divider{
-      margin: 50px;
-     border-top: 5px solid #0e1b27;
+  margin: 50px;
+ border-top: 5px solid #0e1b27;
 }
 
 .cardItem:hover{
    transform: scale(1.05);
 }
+
+/*Sidebar*/
+.Sidebar{
+  color: white;
+  height: 100%;
+  width: 250px;
+  background-color: #0E1B27;
+}
+
+#colSidebar{
+  height: 100vh;
+  pointer-events: none;
+}
+
+.Dashboard{
+  height: 100vh;
+  width: 100%;
+}
+
+.SidebarList{
+  height: auto;
+  padding: 0;
+  width: 100%;
+}
+
+.SidebarList .row{
+  width: 100%;
+  height: 60px;
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+.SidebarList .row:hover{
+  background-color: #324659;
+   transform: scale(1.02);
+
+}
+
+
+#dashContainer {
+  background-color: #f4f4f4;
+  box-shadow: 5px 10px #bfbfbf;
+  margin-right: 10%;
+}
+
+.userProfile{
+  width: 100%;
+  height: 80px;
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0px 80px;
+}
+
+#hr{
+  border-bottom: 3px solid white;
+  margin: 0px 20px;
+}
+
+.userProfile #profIcon{
+  flex: 30%;
+  display: grid;
+  justify-items: center;
+}
+
+.userProfile #profName{
+  flex: 70%;
+  font-size: 20px;
+  font-weight: bold;
+
+}
+
+.row #icon{
+  flex: 30%;
+  display: grid;
+  justify-items: center;
+ 
+}
+
+.row #title{
+  flex: 70%;
+ 
+}
+
+@media screen and (max-height: 450px) {
+    #sidenav {
+        display: none;
+    }
+}
+

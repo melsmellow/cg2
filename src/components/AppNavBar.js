@@ -3,7 +3,7 @@ import {Navbar, Container,  Nav, NavDropdown} from 'react-bootstrap';
 
 import '../App.css'
 
-function Home() {
+function AppNavBar() {
   return ( 
    <Navbar collapseOnSelect expand="lg" id="navbar" variant="dark">
       <Container>
@@ -27,4 +27,4 @@ function Home() {
   )
 }
 
-export default Home;
+export default AppNavBar;
