@@ -27,6 +27,9 @@ function Dashboard(){
 		
 		<div className="mainContainer ">
 			<SideBar />
+		{user !== null
+		?
+			
 		
 			<div md="12" className="Dashboard">
 				
@@ -46,7 +49,7 @@ function Dashboard(){
 				
 				
 			</div>
-	
+		:  navigate('/') 	}
 		</div>
 
 	)
