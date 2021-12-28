@@ -24,12 +24,12 @@ function Sidebar() {
   const logOut =() => {
     unsetUser();
     setUser(null);
-    navigate('/')
      Swal.fire({
       title: 'Successfully Log out',
       icon: 'success',
       text: 'Thank You'
    })
+      navigate('/')
  }
 
   const toggleSidebar = () => {
