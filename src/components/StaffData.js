@@ -9,6 +9,9 @@ export const StaffData = [
         position: "Technician",
 		status: "on Call",
         isAvailable : true,
+        age: "29",
+        address: "San Francisco",
+        birthday: "10/21/1990"
      
 	},
 	{
@@ -16,7 +19,11 @@ export const StaffData = [
 		lastName: "Doe",
         position: "Secretary",
 		status: "on Leave",
-        isAvailable : false
+        isAvailable : false,
+         age: "30",
+        address: "New Jersey",
+        birthday: "09/21/1993"
+     
     
 	},
 	{
@@ -24,7 +31,11 @@ export const StaffData = [
 		lastName: "Dela Cruz",
         position: "Front Desk",
 		status: "on Duty",
-        isAvailable : true
+        isAvailable : true,
+         age: "25",
+        address: "Makati",
+        birthday: "11/21/1996"
+     
      
 	},
 	{
@@ -32,7 +43,11 @@ export const StaffData = [
 		lastName: "Santos",
         position: "Physician",
 		status: "on Duty",
-        isAvailable : true
+        isAvailable : true,
+        age: "33",
+        address: "New York",
+        birthday: "02/21/1990"
+     
      
 	},
 	{
@@ -40,7 +55,11 @@ export const StaffData = [
 		lastName: "Smith",
         position: "Technician",
 		status: "on Leave",
-        isAvailable : false
+        isAvailable : false,
+        age: "35",
+        address: "Hawaii",
+        birthday: "09/22/1985"
+     
       
 	}
 

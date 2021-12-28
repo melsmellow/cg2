@@ -1,11 +1,17 @@
 import React,{useContext} from 'react';
 import {Row , Col, Table} from 'react-bootstrap';
 import AppContext from '../AppContext';
+
+// Component
+import Popup from './Popup';
+import StaffProfile from './StaffProfile'
+
+// Material UI
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
+
 // Mock Data
 import {StaffData} from './StaffData'
-
 import staff2 from '../images/staff4.jpg';
 
 
@@ -25,7 +31,7 @@ function StaffComp() {
 								<h1>Staff</h1>
 							</Col>
 							<Col md="10" className="mx-auto">
-							<Table  hover className="table">
+							<Table  hover className="table" responsive>
 						  <thead>
 						    <tr>
 						     
@@ -38,6 +44,8 @@ function StaffComp() {
 						    </tr>
 						  </thead>
 						  <tbody>
+								
+							
 						    {StaffData.map((val, key)=> {
 						    	return(
 						    		<tr key={key}>
@@ -46,7 +54,11 @@ function StaffComp() {
 						    			<td>{val.position}</td>
 						    			<td>{val.status}</td>
 										<td>{val.isAvailable ? <CheckCircleIcon/> : <DoNotDisturbAltIcon/>}</td>
-										<div id="staff-btn" className="btn">more details</div>
+										<div id="popBtn">
+							 			<Popup>
+											<StaffProfile data={val}/>
+										</Popup>
+										</div>
 						    			
 						    		</tr>
 						    		
