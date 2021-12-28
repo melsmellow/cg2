@@ -10,9 +10,11 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import AppContext from '../AppContext';
 import Slide from '@mui/material/Slide';
 import AddIcon from '@mui/icons-material/Add';
+
+// global variable
+import AppContext from '../AppContext';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -96,8 +98,7 @@ BootstrapDialogTitle.propTypes = {
 
 export default function CustomizedDialogs({children}) {
 
-  const {currentPage, setCurrentPage} = useContext(AppContext)
-  console.log(currentPage)
+  const { content, setContent} = useContext(AppContext);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -119,9 +120,17 @@ export default function CustomizedDialogs({children}) {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Staff Profile
+      {content === "staff" ?
+      <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+          Staff's Profile
         </BootstrapDialogTitle>
+        : content === "tenant" ?
+         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+          Tenant's Profile
+        </BootstrapDialogTitle>
+        : null
+      }
+        
         <DialogContent dividers>
           {children}
         </DialogContent>
