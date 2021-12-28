@@ -32,7 +32,7 @@ function DashboardComp() {
 									<h1>Dashboard</h1>
 								</Col>
 								<CardGroup className="d-flex justify-content-space-between">
-			             <Col lg="3" md="7" className="mx-auto my-5 ">
+			             <Col id="DashcardItem" lg="3" md="7" sm="7" className="mx-auto my-5 ">
 			            <Card className="parentCard">
 			              <Card.Img variant="top"  />
 			              <Card.Body className="dashCards">
@@ -46,7 +46,7 @@ function DashboardComp() {
 			              </Card.Body>
 			            </Card>
 			            </Col>
-			             <Col lg="3" md="7" className="mx-auto my-5 ">
+			             <Col lg="3" md="7" sm="7" className="mx-auto my-5 ">
 			            <Card >
 			              <Card.Img variant="top"  />
 			              <Card.Body className="dashCards">
@@ -61,7 +61,7 @@ function DashboardComp() {
 			              </Card.Body>
 			            </Card>
 			            </Col>
-			             <Col lg="3" md="7" className="mx-auto my-5 ">
+			             <Col lg="3" md="7" sm="7" className="mx-auto my-5 ">
 			            <Card >
 			              <Card.Img variant="top"  />
 			              <Card.Body className="dashCards">

@@ -7,14 +7,30 @@ import { SidebarData } from './SidebarData';
 import { IconContext } from 'react-icons';
 import AppContext from '../AppContext';
 import Dashboard from '../pages/Dashboard'
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import './Sidebar.css';
 
 
 function Sidebar() {
 
-  const { sideBarShowing, setSidebarShowing, content, setContent} = useContext(AppContext);
+  const navigate = useNavigate();
+  const { user, setUser, unsetUser, sideBarShowing, setSidebarShowing, content, setContent} = useContext(AppContext);
   const [sidebar, setSidebar] = useState(false);
+
+  console.log(user)
+
+  const logOut =() => {
+    unsetUser();
+    setUser(null);
+    navigate('/')
+     Swal.fire({
+      title: 'Successfully Log out',
+      icon: 'success',
+      text: 'Thank You'
+   })
+ }
 
   const toggleSidebar = () => {
     setSidebar(!sidebar)
@@ -51,7 +67,11 @@ function Sidebar() {
                 />
               </Form>
               <div id="loggeInUser" >
-                Hello Jane Doe
+                 Hello {user}
+                {user !== null ? 
+                  <button onClick={logOut} id="logOutbtn" className="btn">Log out</button>
+                  : null}
+                
               </div>
             </div>
         </div>

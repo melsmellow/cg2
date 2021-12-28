@@ -16,7 +16,7 @@ import RoomComp from '../components/RoomComp';
 function Dashboard(){
 
 	const navigate = useNavigate();
-	const { content, setContent} = useContext(AppContext);
+	const {user, content, setContent} = useContext(AppContext);
 
 	useEffect(()=> {
 		setContent("dashboard");
@@ -24,6 +24,7 @@ function Dashboard(){
 	},[])
 
 	return(
+		
 		<div className="mainContainer ">
 			<SideBar />
 		

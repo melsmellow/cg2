@@ -1,4 +1,4 @@
-import {useEffect, React} from "react";
+import {useEffect, React, useContext, useState} from "react";
 import {Row, Col, Form, Button, Card, CardGroup} from 'react-bootstrap'
 import '../App.css'
 import { useNavigate } from 'react-router-dom';
@@ -16,12 +16,21 @@ import Footer from '../components/Footer'
 import Aos from "aos";
 import "aos/dist/aos.css";
 
+// global variables
+import AppContext from '../AppContext';
+
 function Home() {
 
   const navigate = useNavigate();
 
+  const { user, setUser} = useContext(AppContext);
+  const [email , setEmail] = useState(null)
+
 
   const loginUser = () => {
+      setUser(email)
+      console.log(user)
+      localStorage.setItem('user', email)
       Swal.fire({
       title: 'Login successfully',
       icon: 'success',
@@ -39,42 +48,50 @@ function Home() {
   return (
   	<div>
   	<AppNavBar/>
-  	<div id="mainBody">
-     <div md="8" sm="12" className=" mt-5 " id="container">
-     	<Row >
-     		<Col lg="6" md="8" className="my-5 mx-auto">
-     		   <CarouselComp/>
-     		</Col>
-        <Col lg="3" md="8" id="LoginForm" className="my-5 mx-auto py-5">
-          <Form onSubmit={(e) => loginUser(e)}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
-            </Form.Group>
-            <Button variant="success" type="submit">
-              Login
-            </Button>
-          </Form>
-        </Col>
-     	</Row>
-     </div>
-     <div id="divider"></div>
+      <div id="mainBody">
+         
+
+         {user == null ?
+          <div md="8" sm="12" className=" mt-5 " id="container">
+           <Row >
+             <Col lg="6" md="8" className="my-5 mx-auto">
+                <CarouselComp/>
+             </Col>
+            <Col lg="3" md="8" id="LoginForm" className="my-5 mx-auto py-5">
+              <Form onSubmit={(e) => loginUser(e)}>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} />
+                  <Form.Text className="text-muted">
+                    We'll never share your email with anyone else.
+                  </Form.Text>
+                </Form.Group>
+    
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" placeholder="Password" />
+                </Form.Group>
+                <Button variant="success" type="submit">
+                  Login
+                </Button>
+              </Form>
+            </Col>
+           </Row>
+         </div>
+        
+         :  null}
+          <div id="divider"></div>
+        
+
+       
      <div className="mt-5">
       <h1 className="text-center mb-5">MEET FUN PEOPLE. DO FUN THINGS.</h1>
       </div>
      <div md="12" className=" d-flex justify-content-center "id="activityTab">
-    
         <Row>
-          <CardGroup >
-             <Col lg="3" md="7" className="mx-auto my-5 cardItem">
+          <CardGroup className="d-flex justify-content-center">
+             <Col lg="3" md="7" className="mx-2 my-5 cardItem">
             <Card data-aos="fade-up" data-aos-anchor-placement="top-bottom"  data-aos-duration="1500">
               <Card.Img variant="top" src={bg5} />
               <Card.Body>
@@ -85,7 +102,7 @@ function Home() {
               </Card.Body>
             </Card>
             </Col>
-             <Col lg="3" md="7" className="mx-auto my-5 cardItem">
+             <Col lg="3" md="7" className="mx-2 my-5 cardItem">
             <Card data-aos="fade-up" data-aos-anchor-placement="top-bottom"  data-aos-duration="1500">
               <Card.Img variant="top" src={bg6} />
               <Card.Body>
@@ -96,7 +113,7 @@ function Home() {
               </Card.Body>
             </Card>
             </Col>
-             <Col lg="3" md="7" className="mx-auto my-5 cardItem">
+             <Col lg="3" md="7" className="mx-2 my-5 cardItem">
             <Card  data-aos="fade-up" data-aos-anchor-placement="top-bottom"  data-aos-duration="1500">
               <Card.Img variant="top" src={bg7} />
               <Card.Body>
