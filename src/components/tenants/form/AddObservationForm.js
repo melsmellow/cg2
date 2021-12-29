@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {Row, Col, Form, Button} from 'react-bootstrap';
 import '../../../App.css'
 import AddIcon from '@mui/icons-material/Add';
@@ -20,8 +20,12 @@ function AddObservationForm() {
 
 	console.log(dialogClose);
 
+	const [buttonIsEnable, setButtonIsEnable] = useState(true);
+
 	const AddObservation = (e) =>{
 		e.preventDefault()
+
+		setButtonIsEnable(false);
 
 		toast.success('Added Successfully', {
 		position: "top-right",
@@ -34,7 +38,7 @@ function AddObservationForm() {
 		})
 
 		// delay function
-		
+
 		setTimeout(function(){
 
 			setDialogClose(false);
@@ -88,10 +92,19 @@ function AddObservationForm() {
 					  </Form.Group>
 				    </Col>
 			 		<Col md="12" className="d-flex justify-content-center">
+			 			{buttonIsEnable == true ?
 			 			 <button id="actionBtn" type="submit">
 				 			 <AddIcon />
 			                  <div className="d-inline px-2">ADD DATA</div>
+			 			
 		                </button>
+		                : <button disabled id="actionBtn" type="submit">
+				 			 <AddIcon />
+			                  <div className="d-inline px-2">ADD DATA</div>
+			 			
+		                </button>
+
+		                }
 		                 <ToastContainer
 						position="top-right"
 						autoClose={5000}
