@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext } from 'react';
+import {useContext , useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -12,9 +12,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import Slide from '@mui/material/Slide';
 import AddIcon from '@mui/icons-material/Add';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+
 
 // global variable
-import AppContext from '../AppContext';
+import AppContext from '../../AppContext';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -98,20 +100,34 @@ BootstrapDialogTitle.propTypes = {
 
 export default function CustomizedDialogs({children}) {
 
-  const { content, setContent} = useContext(AppContext);
+
+
+  const { content, setContent, dialogClose, setDialogClose} = useContext(AppContext);
   const [open, setOpen] = React.useState(false);
 
+   useEffect(()=>{
+    if(dialogClose == true){
+      setOpen(true)
+    }else if(dialogClose == false){
+      setOpen(false)
+    }
+
+  },[dialogClose])
+
+
   const handleClickOpen = () => {
+    setDialogClose(true)
     setOpen(true);
   };
   const handleClose = () => {
+    setDialogClose(false)
     setOpen(false);
   };
 
   return (
     <div>
-       <BootstrapButton startIcon={<AddIcon />} variant="contained" color="success" onClick={handleClickOpen}>
-       View Details
+       <BootstrapButton startIcon={<FactCheckIcon />} variant="contained" id="actionBtn" onClick={handleClickOpen}>
+       Add Observation
       </BootstrapButton>
      
       <BootstrapDialog
@@ -120,18 +136,14 @@ export default function CustomizedDialogs({children}) {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-      {content === "staff" ?
-      <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Staff's Profile
-        </BootstrapDialogTitle>
-        : content === "tenant" ?
+     
          <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Tenant's Profile
+          Add Observation
         </BootstrapDialogTitle>
-        : null
-      }
+      
+   
         
-        <DialogContent dividers id="popupContent">
+        <DialogContent dividers>
           {children}
         </DialogContent>
         <DialogActions>

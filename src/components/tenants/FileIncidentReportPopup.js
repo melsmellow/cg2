@@ -12,9 +12,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import Slide from '@mui/material/Slide';
 import AddIcon from '@mui/icons-material/Add';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+import EnhancedEncryptionIcon from '@mui/icons-material/EnhancedEncryption';
+import BloodtypeIcon from '@mui/icons-material/Bloodtype';
+import SummarizeIcon from '@mui/icons-material/Summarize';
 
 // global variable
-import AppContext from '../AppContext';
+import AppContext from '../../AppContext';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -110,8 +114,8 @@ export default function CustomizedDialogs({children}) {
 
   return (
     <div>
-       <BootstrapButton startIcon={<AddIcon />} variant="contained" color="success" onClick={handleClickOpen}>
-       View Details
+       <BootstrapButton startIcon={<SummarizeIcon />} variant="contained" id="actionBtn"onClick={handleClickOpen}>
+       File Incident Report
       </BootstrapButton>
      
       <BootstrapDialog
@@ -120,18 +124,14 @@ export default function CustomizedDialogs({children}) {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-      {content === "staff" ?
-      <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Staff's Profile
-        </BootstrapDialogTitle>
-        : content === "tenant" ?
+     
          <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Tenant's Profile
+           File Incident Report
         </BootstrapDialogTitle>
-        : null
-      }
+      
+   
         
-        <DialogContent dividers id="popupContent">
+        <DialogContent dividers>
           {children}
         </DialogContent>
         <DialogActions>

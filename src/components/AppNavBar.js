@@ -5,8 +5,8 @@ import '../App.css'
 
 function AppNavBar() {
   return ( 
-   <Navbar collapseOnSelect expand="lg" id="navbar" variant="dark">
-      <Container>
+   <Navbar fixed="top"collapseOnSelect expand="lg" id="navbar" variant="dark">
+      <Container id="navContainer">
       <Navbar.Brand href="#home">Company Name</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">

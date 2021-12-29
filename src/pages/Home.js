@@ -24,9 +24,11 @@ function Home() {
   const navigate = useNavigate();
 
   const { user, setUser} = useContext(AppContext);
-  const [email , setEmail] = useState(null)
+  const [email , setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
-
+  console.log(email)
+  console.log(password)
   const loginUser = () => {
       setUser(email)
       console.log(user)
@@ -70,11 +72,19 @@ function Home() {
     
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
+                  <Form.Control onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
                 </Form.Group>
-                <Button variant="success" type="submit">
+
+                {(password == "" || email == "") ?
+                <Button variant="success" type="submit" disabled>
                   Login
                 </Button>
+                :
+                 <Button variant="success" type="submit">
+                  Login
+                </Button>
+                }
+
               </Form>
             </Col>
            </Row>
@@ -88,10 +98,10 @@ function Home() {
      <div className="mt-5">
       <h1 className="text-center mb-5">MEET FUN PEOPLE. DO FUN THINGS.</h1>
       </div>
-     <div md="12" className=" d-flex justify-content-center "id="activityTab">
+     <div md="12" sm="12" id="activityTab">
         <Row>
-          <CardGroup className="d-flex justify-content-center">
-             <Col lg="3" md="7" className="mx-2 my-5 cardItem">
+          <CardGroup>
+             <Col lg="3" md="8" className="mx-auto my-5 cardItem">
             <Card data-aos="fade-up" data-aos-anchor-placement="top-bottom"  data-aos-duration="1500">
               <Card.Img variant="top" src={bg5} />
               <Card.Body>
@@ -102,7 +112,7 @@ function Home() {
               </Card.Body>
             </Card>
             </Col>
-             <Col lg="3" md="7" className="mx-2 my-5 cardItem">
+             <Col lg="3" md="8" className="mx-auto my-5 cardItem">
             <Card data-aos="fade-up" data-aos-anchor-placement="top-bottom"  data-aos-duration="1500">
               <Card.Img variant="top" src={bg6} />
               <Card.Body>
@@ -113,7 +123,7 @@ function Home() {
               </Card.Body>
             </Card>
             </Col>
-             <Col lg="3" md="7" className="mx-2 my-5 cardItem">
+             <Col lg="3" md="8" className="mx-auto my-5 cardItem">
             <Card  data-aos="fade-up" data-aos-anchor-placement="top-bottom"  data-aos-duration="1500">
               <Card.Img variant="top" src={bg7} />
               <Card.Body>

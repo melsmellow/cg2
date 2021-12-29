@@ -21,6 +21,9 @@ function App() {
     localStorage.clear();
   }
 
+  // useState for closing dialog automatically
+  const [dialogClose, setDialogClose] = useState(false)
+
 
   useEffect(()=>{
      let user = localStorage.getItem('user');
@@ -35,7 +38,7 @@ function App() {
  
 
   return (
-    <AppProvider value={{user,setUser, unsetUser, sideBarShowing, setSidebarShowing , content ,setContent}}>
+    <AppProvider value={{dialogClose, setDialogClose, user,setUser, unsetUser, sideBarShowing, setSidebarShowing , content ,setContent}}>
       <Router>
           <Routes>
             <Route path="/" element={<Home/>}/>

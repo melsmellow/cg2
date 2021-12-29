@@ -50,6 +50,7 @@ function TenantComp() {
 									<div id="popBtn">
 							 			<Popup>
 											<TenantProfile 
+											tenant="1"
 											name="Amanda Watson" 
 											age="87" 
 											status="Hospitalize"
@@ -69,6 +70,7 @@ function TenantComp() {
 							 			<Popup>
 											
 											<TenantProfile 
+											tenant="2"
 											name="Arnold Johnson" 
 											age="79" 
 											status="Normal"
@@ -88,6 +90,7 @@ function TenantComp() {
 									<div id="popBtn">
 							 			<Popup>
 											<TenantProfile 
+											tenant="3"
 											name="Edward Johnson" 
 											age="77" 
 											status="Normal"
@@ -105,7 +108,14 @@ function TenantComp() {
 									<td>March 5, 1956</td>
 									<div id="popBtn">
 							 			<Popup>
-											<TenantProfile name="Levi Ackerman" age="77" status="Hospitalize" birthday="March 5, 1956"address="New York" id="T123672"/>
+											<TenantProfile 
+											tenant="4"
+											name="Levi Ackerman" 
+											age="77" 
+											status="Hospitalize"
+											 birthday="March 5, 1956"
+											 address="New York" 
+											 id="T123672"/>
 										</Popup>
 									</div>
 								</tr>
@@ -117,7 +127,14 @@ function TenantComp() {
 									<td>June 21, 1969</td>
 									<div id="popBtn">
 							 			<Popup>
-											<TenantProfile name="Eren Yeager" age="65" status="Hospitalize" birthday="June 21, 1969"address="Nevada" id="T23252"/>
+											<TenantProfile 
+											tenant="5"
+											name="Eren Yeager" 
+											age="65" 
+											status="Hospitalize" 
+											birthday="June 21, 1969"
+											address="Nevada" 
+											id="T23252"/>
 										</Popup>
 									</div>
 									
