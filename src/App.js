@@ -16,6 +16,9 @@ function App() {
   const [content, setContent] = useState("")
   const [user, setUser] = useState(null)
 
+  // for tenant action 
+  const [action , setAction] = useState("")
+
     // function for clearing localStorage
   const unsetUser = () =>{
     localStorage.clear();
@@ -38,7 +41,7 @@ function App() {
  
 
   return (
-    <AppProvider value={{dialogClose, setDialogClose, user,setUser, unsetUser, sideBarShowing, setSidebarShowing , content ,setContent}}>
+    <AppProvider value={{action , setAction, dialogClose, setDialogClose, user,setUser, unsetUser, sideBarShowing, setSidebarShowing , content ,setContent}}>
       <Router>
           <Routes>
             <Route path="/" element={<Home/>}/>

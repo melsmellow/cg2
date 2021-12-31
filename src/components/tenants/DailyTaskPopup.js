@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext } from 'react';
+import {useContext , useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -99,13 +99,30 @@ BootstrapDialogTitle.propTypes = {
 
 export default function CustomizedDialogs({children}) {
 
-  const { content, setContent} = useContext(AppContext);
+ const { action, setAction, content, setContent, dialogClose, setDialogClose} = useContext(AppContext);
   const [open, setOpen] = React.useState(false);
 
+  useEffect(()=>{
+
+  if(action == "dailyTask"){
+    if(dialogClose == true){
+      setOpen(true)
+    }else if(dialogClose == false){
+      setOpen(false)
+    }
+  }
+    
+
+  },[dialogClose])
+
   const handleClickOpen = () => {
+    setAction("dailyTask");
+    setDialogClose(true);
     setOpen(true);
   };
   const handleClose = () => {
+    setAction("");
+    setDialogClose(false);
     setOpen(false);
   };
 

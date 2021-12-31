@@ -102,24 +102,29 @@ export default function CustomizedDialogs({children}) {
 
 
 
-  const { content, setContent, dialogClose, setDialogClose} = useContext(AppContext);
+  const { action , setAction, content, setContent, dialogClose, setDialogClose} = useContext(AppContext);
   const [open, setOpen] = React.useState(false);
 
    useEffect(()=>{
-    if(dialogClose == true){
-      setOpen(true)
-    }else if(dialogClose == false){
-      setOpen(false)
-    }
 
+    if(action == "observation"){
+        if(dialogClose == true){
+          setOpen(true)
+        }else if(dialogClose == false){
+          setOpen(false)
+        }
+    }
+    
   },[dialogClose])
 
 
   const handleClickOpen = () => {
+    setAction("observation")
     setDialogClose(true)
     setOpen(true);
   };
   const handleClose = () => {
+    setAction("")
     setDialogClose(false)
     setOpen(false);
   };

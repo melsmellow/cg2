@@ -1,29 +1,56 @@
-import React from 'react';
+import React , {useContext, useState} from 'react';
 import {Row, Col, Form, Button} from 'react-bootstrap';
 import '../../../App.css'
 import AddIcon from '@mui/icons-material/Add';
 import Swal from 'sweetalert2'
 
+// global variable
+import AppContext from '../../../AppContext';
 
 // toast
-// import {toast} from 'react-toastify';
-// import 'react-toast/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // pop up
 import Popup from '../../Popup';
 
 // toast.configure()
 function FileIncidentReportForm() {
 
-	const AddObservation = (e) =>{
-		e.preventDefault()
+	const { content, setContent, dialogClose, setDialogClose} = useContext(AppContext);
 
-		// toast('Added Successfully');
+	const [buttonIsEnable, setButtonIsEnable] = useState(true);
+
+	const fileReport = (e) =>{
+		console.log("hello")
+		e.preventDefault();
+		// add alert here
+		setButtonIsEnable(false);
+
+		toast.success('Report File Successfully', {
+		position: "top-right",
+		autoClose: 2000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: true,
+		draggable: true,
+		progress: undefined,
+		})
+
+		// delay function
+
+		setTimeout(function(){
+
+			setDialogClose(false);
+
+		}, 2000); 
+
 
 	}
 	
 	return (
 		<div>
-	 		<Form id="form" onSubmit={(e) => AddObservation(e)}>
+	 		<Form id="form" onSubmit={(e) => fileReport(e)}>
 			 	<Row>
 			 		 <Col md="6" sm="8" className="mx-auto colItem" >
 					    <Form.Control
@@ -65,10 +92,32 @@ function FileIncidentReportForm() {
 					  </Form.Group>
 				    </Col>
 			 		<Col md="12" className="d-flex justify-content-center">
-			 			 <button id="actionBtn" type="submit">
+			 			{buttonIsEnable == true ? 
+		 				<button id="actionBtn" type="submit">
 				 			 <AddIcon />
-			                  <div className="d-inline px-2">ADD DATA</div>
+			                  <div className="d-inline px-2">FILE REPORT</div>
 		                </button>
+
+		                :
+		                <button disabled id="actionBtn" type="submit">
+				 			 <AddIcon />
+			                  <div className="d-inline px-2">FILE REPORT</div>
+		                </button>
+
+			 			}
+			 			
+
+		                 <ToastContainer
+						position="top-right"
+						autoClose={5000}
+						hideProgressBar={false}
+						newestOnTop={false}
+						closeOnClick
+						rtl={false}
+						pauseOnFocusLoss
+						draggable
+						pauseOnHover
+						/>
 			 		</Col> 		
 			 	</Row>
 		 	</Form>
