@@ -278,11 +278,16 @@ body {
 }
 
 #tenantActionContainer{
+  position: relative  ;
   display: flex;
   justify-content: center;
   margin-right: auto;
   margin-left: auto;
 
+}
+
+#tenantActionContainer .adminItem{
+  position: relative;
 }
 
 #actionBtn{
@@ -320,4 +325,19 @@ body {
 
 #selectForm:focus{
   border: 3px solid #C1DFFF;
+}
+
+
+#actionBtn3{
+  font-size: 18px;
+  background-color: #0E1B27;
+  width: 280px;
+  height: 50px;
+  color: white;
+
+}
+
+#actionBtn3:hover{
+  transform: scale(1.02);
+  background-color:  #294e70;
 }

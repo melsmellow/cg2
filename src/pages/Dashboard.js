@@ -10,6 +10,7 @@ import SideBar from '../components/SideBar';
 import StaffComp from '../components/StaffComp';
 import TenantComp from '../components/TenantComp';
 import RoomComp from '../components/RoomComp';
+import AdminMenuComp from '../components/AdminMenuComp';
 
 
 
@@ -41,6 +42,8 @@ function Dashboard(){
 				 <TenantComp/>
 				  : content === "room" ?
 				 	<RoomComp/>
+				   : content === "admin" ?
+				   <AdminMenuComp/>
 				  : content === "home" ?
 				  navigate('/')
 				 :
