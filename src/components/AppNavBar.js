@@ -11,8 +11,8 @@ function AppNavBar() {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">
-          <Nav.Link href="/dashboard">Feature1</Nav.Link>
-          <Nav.Link href="#pricing">Feature2</Nav.Link>
+          <Nav.Link active href="/dashboard">Dashboard</Nav.Link>
+          <Nav.Link active href="#pricing">Feature2</Nav.Link>
           <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Feature1</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">Feature2</NavDropdown.Item>

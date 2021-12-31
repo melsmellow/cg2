@@ -4,6 +4,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import BadgeIcon from '@mui/icons-material/Badge';
 import ElderlyIcon from '@mui/icons-material/Elderly';
 import RoomServiceIcon from '@mui/icons-material/RoomService';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 export const SidebarData = [
 	{
@@ -30,6 +31,11 @@ export const SidebarData = [
 		title: "Rooms",
 		icon: <RoomServiceIcon />,
 		link: "room"
+	},
+	{
+		title: "Administration Menu",
+		icon: <AdminPanelSettingsIcon />,
+		link: "admin"
 	}
 
 ]

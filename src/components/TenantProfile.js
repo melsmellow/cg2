@@ -18,6 +18,8 @@ import AddObservationForm from './tenants/form/AddObservationForm';
 import DailyTaskForm from './tenants/form/DailyTaskForm';
 import EnterVitalsForm from './tenants/form/EnterVitalsForm';
 import FileIncidentReportForm from './tenants/form/FileIncidentReportForm';
+import ProvideSingleCareForm from './tenants/form/ProvideSingleCareForm';
+import MedicalPassForm from './tenants/form/MedicalPassForm';
 
 // Tenants Popup Components
 import AddObservationPopup from './tenants/AddObservationPopup';
@@ -128,14 +130,14 @@ function TenantProfile(data) {
 						</Col>
 						<Col className="px-0">
 				 			<ProvideSingleCarePopup>
-									hey
+									<ProvideSingleCareForm/>
 							</ProvideSingleCarePopup>
 						</Col>
 			 		</Col> 	
 			 		<Col id="tenantActionContainer" md="8" className="mx-auto mt-3">
 			 			<Col className="px-0">
 				 			<MedicalPassPopup>
-									hey
+									<MedicalPassForm/>
 							</MedicalPassPopup>
 						</Col>
 						<Col className="px-2">

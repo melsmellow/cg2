@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext } from 'react';
+import {useContext, useEffect , useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -102,13 +102,32 @@ BootstrapDialogTitle.propTypes = {
 
 export default function CustomizedDialogs({children}) {
 
-  const { content, setContent} = useContext(AppContext);
+  const { dialogClose, setDialogClose,  action , setAction , content, setContent} = useContext(AppContext);
   const [open, setOpen] = React.useState(false);
 
+
+ // Condition for auto closing Popup dilog box
+ useEffect(()=>{
+
+    if(action == "report"){
+        if(dialogClose == true){
+          setOpen(true)
+        }else if(dialogClose == false){
+          setOpen(false)
+        }
+    }
+    
+  },[dialogClose])
+
+
   const handleClickOpen = () => {
+    setAction("report")
+    setDialogClose(true)
     setOpen(true);
   };
   const handleClose = () => {
+    setAction("")
+    setDialogClose(false)
     setOpen(false);
   };
 
@@ -129,8 +148,6 @@ export default function CustomizedDialogs({children}) {
            File Incident Report
         </BootstrapDialogTitle>
       
-   
-        
         <DialogContent dividers>
           {children}
         </DialogContent>
