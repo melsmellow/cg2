@@ -7,6 +7,7 @@ import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
 // Form
 import AddNewResidentForm from './admin/form/AddNewResidentForm';
 import DischargedResidentForm from './admin/form/DischargedResidentForm';
+import IncidentReportForm from './admin/form/IncidentReportForm';
 
 // Popup Components
 import AddNewResidentPopup from './admin/AddNewResidentPopup';
@@ -55,7 +56,7 @@ function AdminMenuComp() {
 						<Col md="12" className="mx-auto d-flex justify-item-center mt-4" >
 								<Col md="3" sm="10" className="mx-auto adminItem">
 									<IncidentReportsPopup>
-										incident
+										<IncidentReportForm/>
 									</IncidentReportsPopup>
 								</Col>
 								<Col md="3" sm="10" className="mx-auto adminItem">
