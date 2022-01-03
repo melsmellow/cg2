@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Row, Col, Form, Button, Table} from 'react-bootstrap';
 import '../App.css'
 import AddIcon from '@mui/icons-material/Add';
@@ -30,6 +30,15 @@ import EnterVitalsPopup from './tenants/EnterVitalsPopup';
 import FileIncidentReportPopup from './tenants/FileIncidentReportPopup';
 
 function TenantProfile(data) {
+
+	// state for tenant action tab
+	const [currentTab, setCurrentTab] = useState("provide service");
+	useEffect(() => {
+
+		console.log(currentTab)
+
+	},[currentTab])
+	
 
    const current = new Date();
    const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
@@ -117,40 +126,106 @@ function TenantProfile(data) {
 					    <label>Address</label>
 			 		</Col>
 			 		
-			 		<Col id="tenantActionContainer" md="8" >
-			 			<Col className="px-0">
-				 			<AddObservationPopup>
-									<AddObservationForm/>
-							</AddObservationPopup>
-						</Col>
-						<Col className="px-2">
-				 			<DailyTaskPopup>
-									<DailyTaskForm/>
-							</DailyTaskPopup>
-						</Col>
-						<Col className="px-0">
-				 			<ProvideSingleCarePopup>
-									<ProvideSingleCareForm/>
-							</ProvideSingleCarePopup>
-						</Col>
-			 		</Col> 	
-			 		<Col id="tenantActionContainer" md="8" className="mx-auto mt-3">
-			 			<Col className="px-0">
-				 			<MedicalPassPopup>
-									<MedicalPassForm/>
-							</MedicalPassPopup>
-						</Col>
-						<Col className="px-2">
-				 			<EnterVitalsPopup>
-									<EnterVitalsForm/>
-							</EnterVitalsPopup>
-						</Col>
-						<Col className="px-0">
-				 			<FileIncidentReportPopup>
-									<FileIncidentReportForm/>
-							</FileIncidentReportPopup>
-						</Col>
-			 		</Col> 	
+			 		<Col md="12" id="actionHolder">
+				 		<Col md="12" id="subTitle" className="mb-3 py-2">
+
+				 			{currentTab == 'provide service'
+				 			? <div className="btn p-0" 
+				 		 	   id='actionBtn5active'
+				 		 	onClick={() => setCurrentTab("provide service")}>
+				 		 		<p className="p-1">Provide Service</p>
+				 		 	</div>
+				 			: <div className="btn p-0" 
+				 		 	   id='actionBtn5'
+				 		 	onClick={() => setCurrentTab("provide service")}>
+				 		 		<p className="p-1">Provide Service</p>
+				 		 	</div>}
+
+
+				 		 	{currentTab == 'resident'
+				 		 	? 	<div className="btn p-0" id="actionBtn5active"  onClick={() => setCurrentTab("resident")}>
+				 		 		<p className="p-1">Resident</p>
+				 		 	</div>
+				 		 	:
+				 		 		<div className="btn p-0" id="actionBtn5"  onClick={() => setCurrentTab("resident")}>
+				 		 		<p className="p-1">Resident</p>
+				 		 	</div>
+				 		   }
+				 		 	
+
+				 		 {currentTab == 'care plan'
+				 		 ? 	<div className="btn p-0" id="actionBtn5active"  onClick={() => setCurrentTab("care plan")}>
+				 		 		<p className="p-1">Care Plan</p>
+				 		 	</div>
+				 		 	:	<div className="btn p-0" id="actionBtn5"  onClick={() => setCurrentTab("care plan")}>
+				 		 		<p className="p-1">Care Plan</p>
+				 		 	</div>
+				 		}
+
+				 		 
+				 		 {currentTab == 'history'
+				 		 ?<div className="btn p-0" id="actionBtn5active"  onClick={() => setCurrentTab("history")}>
+				 		 		<p className="p-1">History</p>
+				 		 	</div>
+				 		 	: <div className="btn p-0" id="actionBtn5"  onClick={() => setCurrentTab("history")}>
+				 		 		<p className="p-1">History</p>
+				 		 	</div>}
+				 		 	
+				 		 	 {currentTab == 'add reports'
+				 		 	 ?<div className="btn p-0" id="actionBtn5active"  onClick={() => setCurrentTab("add reports")}>
+				 		 		<p className="p-1">Add Reports</p>
+				 		 	</div>
+				 		 	 :<div className="btn p-0" id="actionBtn5"  onClick={() => setCurrentTab("add reports")}>
+				 		 		<p className="p-1">Add Reports</p>
+				 		 	</div>}
+
+				 		 	
+
+				 		 </Col>
+				 		 {currentTab == 'provide service'
+				 		 ?<Col>
+				 		 <Col id="tenantActionContainer" md="8" >
+				 			<Col className="px-0">
+					 			<AddObservationPopup>
+										<AddObservationForm/>
+								</AddObservationPopup>
+							</Col>
+							<Col className="px-2">
+					 			<DailyTaskPopup>
+										<DailyTaskForm/>
+								</DailyTaskPopup>
+							</Col>
+							<Col className="px-0">
+					 			<ProvideSingleCarePopup>
+										<ProvideSingleCareForm/>
+								</ProvideSingleCarePopup>
+							</Col>
+				 		</Col> 	
+				 		<Col id="tenantActionContainer" md="8" className="mx-auto mt-3">
+				 			<Col className="px-0">
+					 			<MedicalPassPopup>
+										<MedicalPassForm/>
+								</MedicalPassPopup>
+							</Col>
+							<Col className="px-2">
+					 			<EnterVitalsPopup>
+										<EnterVitalsForm/>
+								</EnterVitalsPopup>
+							</Col>
+							<Col className="px-0">
+					 			<FileIncidentReportPopup>
+										<FileIncidentReportForm/>
+								</FileIncidentReportPopup>
+							</Col>
+				 		</Col> 
+				 		</Col>
+				 		:null}
+				 		
+
+
+			 		</Col>
+
+
 
 
 			 			{/**/}

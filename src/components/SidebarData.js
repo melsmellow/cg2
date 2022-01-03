@@ -5,7 +5,7 @@ import BadgeIcon from '@mui/icons-material/Badge';
 import ElderlyIcon from '@mui/icons-material/Elderly';
 import RoomServiceIcon from '@mui/icons-material/RoomService';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-
+import EventNoteIcon from '@mui/icons-material/EventNote';
 export const SidebarData = [
 	{
 		title: "Home",
@@ -18,14 +18,20 @@ export const SidebarData = [
 		link: "dashboard"
 	},
 	{
-		title: "Staff",
-		icon: <BadgeIcon />,
-		link: "staff"
+		title: "Recent Notes",
+		icon: <EventNoteIcon />,
+		link: "notes"
 	},
 	{
 		title: "Tenants",
 		icon: <ElderlyIcon />,
 		link: "tenant"
+	},
+	
+	{
+		title: "Administration Menu",
+		icon: <AdminPanelSettingsIcon />,
+		link: "admin"
 	},
 	{
 		title: "Rooms",
@@ -33,9 +39,9 @@ export const SidebarData = [
 		link: "room"
 	},
 	{
-		title: "Administration Menu",
-		icon: <AdminPanelSettingsIcon />,
-		link: "admin"
+		title: "Staff",
+		icon: <BadgeIcon />,
+		link: "staff"
 	}
 
 ]

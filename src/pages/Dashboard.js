@@ -10,6 +10,7 @@ import SideBar from '../components/SideBar';
 import StaffComp from '../components/StaffComp';
 import TenantComp from '../components/TenantComp';
 import RoomComp from '../components/RoomComp';
+import RecentNotesComp from '../components/RecentNotesComp';
 import AdminMenuComp from '../components/AdminMenuComp';
 
 
@@ -44,6 +45,8 @@ function Dashboard(){
 				 	<RoomComp/>
 				   : content === "admin" ?
 				   <AdminMenuComp/>
+				   : content === "notes" ?
+				   <RecentNotesComp/>
 				  : content === "home" ?
 				  navigate('/')
 				 :

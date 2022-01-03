@@ -8,6 +8,8 @@ import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
 import AddNewResidentForm from './admin/form/AddNewResidentForm';
 import DischargedResidentForm from './admin/form/DischargedResidentForm';
 import IncidentReportForm from './admin/form/IncidentReportForm';
+import IncidentInvestigationForm from './admin/form/IncidentInvestigationForm';
+import ResidentSearchForm from './admin/form/ResidentSearchForm';
 
 // Popup Components
 import AddNewResidentPopup from './admin/AddNewResidentPopup';
@@ -61,7 +63,7 @@ function AdminMenuComp() {
 								</Col>
 								<Col md="3" sm="10" className="mx-auto adminItem">
 									<IncidentInvestigationPopup>
-										hey
+										<IncidentInvestigationForm/>
 									</IncidentInvestigationPopup>
 								</Col>
 								<Col md="3" sm="10" className="mx-auto adminItem">
@@ -78,7 +80,7 @@ function AdminMenuComp() {
 								</Col>
 								<Col md="3" sm="10" className="mx-auto adminItem">
 									<ResidentSearchPopup>
-										hey
+										<ResidentSearchForm/>
 									</ResidentSearchPopup>
 								</Col>
 								<Col md="3" sm="10" className="mx-auto adminItem">
