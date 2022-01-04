@@ -10,6 +10,8 @@ import DischargedResidentForm from './admin/form/DischargedResidentForm';
 import IncidentReportForm from './admin/form/IncidentReportForm';
 import IncidentInvestigationForm from './admin/form/IncidentInvestigationForm';
 import ResidentSearchForm from './admin/form/ResidentSearchForm';
+import AdditionalResidentFieldsForm from './admin/form/AdditionalResidentFieldsForm';
+import ResidentKeyIndicatorsForm from './admin/form/ResidentKeyIndicatorsForm';
 
 // Popup Components
 import AddNewResidentPopup from './admin/AddNewResidentPopup';
@@ -51,7 +53,7 @@ function AdminMenuComp() {
 								</Col>
 								<Col md="3" sm="10" className="mx-auto adminItem">
 									<ResidentProviderPopup>
-										resident provider
+										<DischargedResidentForm/>
 									</ResidentProviderPopup>
 								</Col>
 						</Col>
@@ -68,14 +70,14 @@ function AdminMenuComp() {
 								</Col>
 								<Col md="3" sm="10" className="mx-auto adminItem">
 									<AdditionalResidentFieldsPopup>
-										hey
+										<AdditionalResidentFieldsForm/>
 									</AdditionalResidentFieldsPopup>
 								</Col>
 						</Col>
 						<Col md="12" className="mx-auto d-flex justify-item-center mt-4" >
 								<Col md="3" sm="10" className="mx-auto adminItem">
 									<ResidentKeyIndicatorsPopup>
-										incident
+										<ResidentKeyIndicatorsForm/>
 									</ResidentKeyIndicatorsPopup>
 								</Col>
 								<Col md="3" sm="10" className="mx-auto adminItem">
@@ -85,14 +87,14 @@ function AdminMenuComp() {
 								</Col>
 								<Col md="3" sm="10" className="mx-auto adminItem">
 									<DischargedManagementPopup>
-										hey
+										<DischargedResidentForm/>
 									</DischargedManagementPopup>
 								</Col>
 						</Col>
 						<Col md="12" className="mx-auto d-flex justify-item-center mt-4" >
 								<Col md="3" sm="10" className="mx-auto adminItem">
 									<MedChartManagementPopup>
-										hey
+										<DischargedResidentForm/>
 									</MedChartManagementPopup>
 								</Col>
 						</Col>

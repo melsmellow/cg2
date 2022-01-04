@@ -2,6 +2,16 @@ import React, {useState, useEffect} from 'react';
 import {Row, Col, Form, Button, Table} from 'react-bootstrap';
 import '../App.css'
 import AddIcon from '@mui/icons-material/Add';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import NoteAltIcon from '@mui/icons-material/NoteAlt';
+import InsertChartIcon from '@mui/icons-material/InsertChart';
+import DriveFileMoveIcon from '@mui/icons-material/DriveFileMove';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
+import FindInPageIcon from '@mui/icons-material/FindInPage';
 
 // components
 import Popup from './Popup';
@@ -29,6 +39,8 @@ import MedicalPassPopup from './tenants/MedicalPassPopup';
 import EnterVitalsPopup from './tenants/EnterVitalsPopup';
 import FileIncidentReportPopup from './tenants/FileIncidentReportPopup';
 
+import {historyData} from '../historyData'
+
 function TenantProfile(data) {
 
 	// state for tenant action tab
@@ -45,7 +57,7 @@ function TenantProfile(data) {
 	
 	return (
 		<div>
-	 		<Form id="form">
+{/*	 		<Form id="form">*/}
 			 	<Row>
 			 		 <Col md="12" sm="12" className="mx-auto mb-3 colItem" >
 			 		 	<Col md="12" className="mb-3 d-flex justify-content-center">
@@ -219,7 +231,200 @@ function TenantProfile(data) {
 							</Col>
 				 		</Col> 
 				 		</Col>
-				 		:null}
+				 		: currentTab == 'add reports'
+				 		?<Col>
+				 			 <Col md="10" sm="8"  className="mx-auto mb-3 colItem d-flex justify-content-center">
+							    <select id="selectForm" required className="formItem ">
+							   	 <option value="" disabled hidden selected>Choose Report</option>
+								  <option value="normaluser">Report one</option>
+								  <option value="staff">Report two</option>
+								  <option value="admin">Report three</option>
+								  <option value="medical staff">Report four</option>
+								  <option value="everybody">Report five</option>
+								</select>
+								
+					 		</Col>
+					 		<Col md="12" className="d-flex justify-content-center">
+					 			<button id="actionBtn4">Start</button>
+					 		</Col>
+
+					 		<Col md="12" sm="8"  className="mx-auto mb-3 colItem d-flex justify-content-center">
+						
+							<Col md="12" className="mx-auto">
+							<Table  hover className="table" responsive>
+						  <thead>
+						    <tr>
+						     
+						      <th>Previous Report</th>
+							  <th>Date</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+								{historyData.map((val, key) => {
+									return(
+										<tr key={key}>
+				
+											<td>{val.activity}</td>
+											<td>{val.date}</td>
+
+											
+										</tr>
+									)
+								})}
+				
+						  </tbody>
+						</Table>
+						</Col>
+						
+					 		</Col>
+
+				 		</Col>
+				 		: currentTab == 'history'
+				 		? <Col>
+					 		<Col md="12" sm="8"  className="mx-auto mb-3 colItem d-flex justify-content-center">
+					
+							<Col md="12" className="mx-auto">
+							<Table  hover className="table" responsive>
+						  <thead>
+						    <tr>
+						     
+						      <th>Activity</th>
+							  <th>Note</th>
+							  <th>Date</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+								{historyData.map((val, key) => {
+									return(
+										<tr key={key}>
+				
+											<td>{val.activity}</td>
+											<td>{val.note}</td>
+											<td>{val.date}</td>
+
+											
+										</tr>
+									)
+								})}
+				
+						  </tbody>
+						</Table>
+						</Col>
+					
+					 		</Col>
+
+				 		</Col>
+				 		: currentTab == 'care plan' 
+				 		?<Col>
+				 		 <Col id="tenantActionContainer" md="8" >
+				 			<Col >
+					 			<button id="actionBtn6" type="submit">
+				 			 <VolunteerActivismIcon />
+			                  <div className="d-inline px-2">Care Plan</div>
+			 			
+		                </button>
+							</Col>
+							<Col >
+					 			<button id="actionBtn6" type="submit">
+				 			 <VolunteerActivismIcon />
+			                  <div className="d-inline px-2">Care Plan Report</div>
+			 			
+		                </button>
+							</Col>
+				 		</Col> 	
+				 		<Col id="tenantActionContainer" md="8" className=" mt-2">
+				 			<Col >
+					 			<button id="actionBtn6" type="submit">
+				 			 <NoteAltIcon />
+			                  <div className="d-inline px-2">Complete Assessment</div>
+		                </button>
+							</Col>
+							<Col >
+					 			<button id="actionBtn6" type="submit">
+				 			 <InsertChartIcon />
+			                  <div className="d-inline px-2">Level of Care Status</div>
+			 			
+		                </button>
+							</Col>
+				 		</Col> 
+				 		<Col md="12" className="d-flex justify-content-center mt-2">
+				 			<button id="actionBtn6" type="submit">
+				 			 <VolunteerActivismIcon />
+			                  <div className="d-inline px-2">Care Plan Projection</div>
+			 			
+		                </button>
+				 		</Col>
+				 		</Col>
+
+				 		: currentTab == 'resident'
+				 		?<Col>
+				 		 <Col id="tenantActionContainer" md="8" >
+				 			<Col >
+					 			<button id="actionBtn6" type="submit">
+				 			 <DriveFileMoveIcon />
+			                  <div className="d-inline px-2">Resident File</div>
+			 			
+		                </button>
+							</Col>
+							<Col >
+					 			<button id="actionBtn6" type="submit">
+				 			 <ThumbUpAltIcon />
+			                  <div className="d-inline px-2">Risk Agreement</div>
+			 			
+		                </button>
+							</Col>
+				 		</Col> 	
+				 		<Col id="tenantActionContainer" md="8" className="mt-2">
+				 			<Col >
+					 			<button id="actionBtn6" type="submit">
+				 			 <LocalPharmacyIcon />
+			                  <div className="d-inline px-2">Medication Orders</div>
+			 			
+		                </button>
+							</Col>
+							<Col >
+					 			<button id="actionBtn6" type="submit">
+				 			 <PersonSearchIcon />
+			                  <div className="d-inline px-2">Resident Diagnoses</div>
+			 			
+		                </button>
+							</Col>
+				 		</Col> 
+				 		<Col id="tenantActionContainer" md="8" className="mt-2">
+				 			<Col >
+					 			<button id="actionBtn6" type="submit">
+				 			 <MonetizationOnIcon />
+			                  <div className="d-inline px-2">Petty Cash</div>
+			 			
+		                </button>
+							</Col>
+							<Col >
+					 			<button id="actionBtn6" type="submit">
+				 			 <ContentPasteSearchIcon />
+			                  <div className="d-inline px-2">Indications</div>
+			 			
+		                </button>
+							</Col>
+				 		</Col> 
+				 		<Col id="tenantActionContainer" md="8" className="mt-2">
+				 			<Col >
+					 			<button id="actionBtn6" type="submit">
+				 			 <PersonSearchIcon />
+			                  <div className="d-inline px-2">Symptoms</div>
+			 			
+		                </button>
+							</Col>
+							<Col >
+					 			<button id="actionBtn6" type="submit">
+				 			 <FindInPageIcon />
+			                  <div className="d-inline px-2">Resident File - Status Log</div>
+			 			
+		                </button>
+							</Col>
+				 		</Col> 
+				 		
+				 		</Col>
+				 		: null}
 				 		
 
 
@@ -229,7 +434,7 @@ function TenantProfile(data) {
 
 
 			 			{/**/}
-			 			<Col md="12" className="mx-auto mt-5">
+			 			{/*<Col md="12" className="mx-auto mt-5">
 				 		<h2>Activity History</h2>
 					 	<Table  hover className="table">
 						  <thead>
@@ -253,9 +458,8 @@ function TenantProfile(data) {
 						   	  </tr>
 						  </tbody>
 						</Table>
-						</Col>
+						</Col>*/}
 			 	</Row>
-		 	</Form>
 		</div>
 	)
 }

@@ -95,10 +95,12 @@ body {
   background-color: #0E1B27;
   position: relative;
   z-index: 5;
+
  
 }
 
 #colSidebar{
+
   height: 100vh;
   pointer-events: none;
   position: relative;
@@ -118,6 +120,7 @@ body {
   height: auto;
   padding: 0;
   width: 100%;
+  height: 100%;
   position: absolute;
   z-index: 5;
  
@@ -368,7 +371,23 @@ body {
 
 
 #actionBtn5:hover{
-  transform: scale(1.2);
+  transform: scale(1.1);
+}
+
+
+#actionBtn6{
+  font-size: 12px;
+  border-radius: 3px;
+  background-color: #0E1B27;
+  width: 200Px;
+  height: 35px;
+  color: white;
+
+}
+
+#actionBtn6:hover{
+  transform: scale(1.02);
+  background-color:  #294e70;
 }
 #actionBtn5active{
   font-size: 15px;
@@ -397,7 +416,8 @@ body {
 }
 
 #actionHolder{
-  height: 30vh;
+  height: auto;
+  padding-bottom: 20px;
   padding-top: 20px;
    box-shadow: 5px 10px #bfbfbf;
 }
