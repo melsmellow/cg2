@@ -56,7 +56,9 @@ function TenantComp() {
 											status="Hospitalize"
 											birthday="January 21, 1960"
 											address="New Jersey" 
-											id="T20090"/>
+											id="T20090"
+											allergies="Peanut , Avocado, Perfume"
+											code="N/A"/>
 										</Popup>
 									</div>
 								</tr>
@@ -76,7 +78,9 @@ function TenantComp() {
 											status="Normal"
 											birthday="November 20, 1960"
 											address="Tokyo" 
-											id="T28991"/>
+											id="T28991"
+											allergies="Cow’s Milk , Avocado, Eggs, Tree Nuts"
+											code="N/A"/>
 									
 										</Popup>
 									</div>
@@ -96,7 +100,9 @@ function TenantComp() {
 											status="Normal"
 											birthday="February 14, 1960"
 											address="San Francisco" 
-											id="T27322"/>
+											id="T27322"
+											allergies="Shellfish , Wheat, Eggs, Tree Nuts"
+											code="N/A"/>
 										</Popup>
 									</div>
 								</tr>
@@ -115,7 +121,9 @@ function TenantComp() {
 											status="Hospitalize"
 											 birthday="March 5, 1956"
 											 address="New York" 
-											 id="T123672"/>
+											 id="T123672"
+											 allergies="Fish , Soy, Eggs, Tree Nuts"
+											code="N/A"/>
 										</Popup>
 									</div>
 								</tr>
@@ -134,7 +142,9 @@ function TenantComp() {
 											status="Hospitalize" 
 											birthday="June 21, 1969"
 											address="Nevada" 
-											id="T23252"/>
+											id="T23252"
+											allergies="Mustard seeds , Soy, Eggs, Tree Nuts"
+											code="N/A"/>
 										</Popup>
 									</div>
 									

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {Row, Col, Form, Button} from 'react-bootstrap';
 import '../../../App.css'
 import AddIcon from '@mui/icons-material/Add';
@@ -17,9 +17,27 @@ function EnterVitalsForm() {
 	const { content, setContent, dialogClose, setDialogClose} = useContext(AppContext);
 
 	const [buttonIsEnable, setButtonIsEnable] = useState(true);
+	// useState for all the input fields
+	const [date, setDate] = useState("");
+	const [time, setTime] = useState("");
+	const [bodyTemp, setBodyTemp] = useState("");
+	const [pulse, setPulse] = useState("");
+	const [respiration, setRespiration] = useState("");
+	const [bp, setBp] = useState("");
+
+	useEffect(()=>{
+
+		if(date !== "" && time !== "" && bodyTemp !== "" && pulse !== ""&& respiration !== "" && bp !== ""){
+
+			const timeoutId = setTimeout(() => AddObservation(), 1000);
+			return () => clearTimeout(timeoutId);  	   
+
+		}
+
+	},[date, time, bodyTemp, pulse, respiration , bp])
 
 	const AddObservation = (e) =>{
-		e.preventDefault();
+		// e.preventDefault();
 		// add alert here
 		setButtonIsEnable(false);
 
@@ -52,6 +70,8 @@ function EnterVitalsForm() {
 					      type="date"
 					      name="date"
 					      required
+					      value={date}
+					      onChange={(e)=>setDate(e.target.value)}
 					      placeholder=" "
 					      className="formItem mt-3 form__input"
 					    />
@@ -63,6 +83,8 @@ function EnterVitalsForm() {
 					      type="time"
 					      name="time"
 					      required
+					      value={time}
+					      onChange={(e)=>setTime(e.target.value)}
 					      placeholder=" "
 					      className="formItem mt-3 form__input"
 					    />
@@ -74,6 +96,8 @@ function EnterVitalsForm() {
 					      type="text"
 					      name="bodyTemp"
 					      required
+					      value={bodyTemp}
+					      onChange={(e)=>setBodyTemp(e.target.value)}
 					      placeholder=" "
 					      className="formItem mt-3 form__input"
 					    />
@@ -85,6 +109,8 @@ function EnterVitalsForm() {
 					      type="text"
 					      name="pulseRate"
 					      required
+					      value={pulse}
+					      onChange={(e)=>setPulse(e.target.value)}
 					      placeholder=" "
 					      className="formItem mt-3 form__input"
 					    />
@@ -96,6 +122,8 @@ function EnterVitalsForm() {
 					      type="text"
 					      name="respirationRate"
 					      required
+					      value={respiration}
+					      onChange={(e)=>setRespiration(e.target.value)}
 					      placeholder=" "
 					      className="formItem mt-3 form__input"
 					    />
@@ -107,6 +135,8 @@ function EnterVitalsForm() {
 					      type="text"
 					      name="bloodPressure"
 					      required
+					      value={bp}
+					      onChange={(e)=>setBp(e.target.value)}
 					      placeholder=" "
 					      className="formItem mt-3 form__input"
 					    />
@@ -116,7 +146,7 @@ function EnterVitalsForm() {
 			 		
 			 		
 			 		<Col md="12" className="d-flex justify-content-center mt-3">
-			 			{buttonIsEnable == true ? 
+			 			{/*{buttonIsEnable == true ? 
 	 				    <button id="actionBtn" type="submit">
 				 			 <AddIcon />
 			                  <div className="d-inline px-2">ENTER VITALS</div>
@@ -127,7 +157,7 @@ function EnterVitalsForm() {
 			                  <div className="d-inline px-2">ENTER VITALS</div>
 		                </button>
 			 			}
-			 			
+			 			*/}
 
 		                 <ToastContainer
 						position="top-right"

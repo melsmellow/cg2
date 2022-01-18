@@ -84,7 +84,7 @@ function Sidebar() {
             </li>
             {SidebarData.map((val, key) => {
               return (
-                <li key={key} className="row" onClick={()=>toggleContent(val.link)}>
+                <li id={content === val.link ? "active-navList" : null} key={key} className="row" onClick={()=>toggleContent(val.link)}>
                     <div id="icon">
                     {val.icon}
                     </div>

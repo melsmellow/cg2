@@ -60,26 +60,31 @@ function TenantProfile(data) {
 {/*	 		<Form id="form">*/}
 			 	<Row>
 			 		 <Col md="12" sm="12" className="mx-auto mb-3 colItem" >
-			 		 	<Col md="12" className="mb-3 d-flex justify-content-center">
-					    <h2>Tenant Id: {data.id}</h2>
-					    </Col>
-					    <Col md="12" className="d-flex justify-content-center">
-						    {data.tenant == 1 ? 
-						    <img id="tenantPic" src={tenant1} alt=""></img> 
-						    : data.tenant == 2 ?
-						     <img id="tenantPic" src={tenant2} alt=""></img> 
-						    : data.tenant == 3 ?
-						     <img id="tenantPic" src={tenant3} alt=""></img> 
-						    : data.tenant == 4 ?
-						     <img id="tenantPic" src={tenant4} alt=""></img> 
-						    : data.tenant == 5 ?
-						     <img id="tenantPic" src={tenant5} alt=""></img> 
-						    : null
-							}
-						    
-
-							
-					    </Col>
+			 		 	<Row>
+			 		 		<Col md="4" className="mb-3 text-center">
+					   			 <h4>Tenant Id: {data.id}</h4>
+					   			 <div className="mx-auto d-flex justify-content-center">
+					   			 {data.tenant == 1 ? 
+							    <img id="tenantPic" src={tenant1} alt=""></img> 
+							    : data.tenant == 2 ?
+							     <img id="tenantPic" src={tenant2} alt=""></img> 
+							    : data.tenant == 3 ?
+							     <img id="tenantPic" src={tenant3} alt=""></img> 
+							    : data.tenant == 4 ?
+							     <img id="tenantPic" src={tenant4} alt=""></img> 
+							    : data.tenant == 5 ?
+							     <img id="tenantPic" src={tenant5} alt=""></img> 
+							    : null
+								}
+								</div>
+					   		</Col>
+					   		<Col md="8" id="allergyLabel">
+					   			<h4 className="mb-3 mt-5">Allergies: <h5>{data.allergies}</h5></h4>
+					   			<h4>Code Status: <h5></h5></h4>
+					   		</Col>
+			 		 	</Row>
+					
+					   
 			 		</Col>
 			 		 <Col md="6" sm="8" className="mx-auto mb-3 colItem" >
 					    <Form.Control

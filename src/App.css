@@ -147,6 +147,11 @@ body {
 
 }
 
+#active-navList{
+  background-color: #1C83FB;
+  transform: scale(1.02);
+}
+
 
 #dashContainer {
   background-color: #F5F5FD;
@@ -246,12 +251,27 @@ body {
 }
 
 #tenantPic{
-  width: 90px;
-  height: 100%;
+  width: 75px;
   transform: scale(1.2);
-  border-radius: 50px;
+  border-radius: 60px;
   box-shadow: 0px 0px 7px grey;
 
+}
+
+#allergyLabel h5{
+  font-weight: bold;
+   text-decoration: underline;
+   color: #0066ff;
+}
+
+#allergyLabel h4{
+  font-weight: bold;
+}
+
+
+#tenantPicContainer{
+  padding: 0;
+  margin: 0;
 }
 
 #logOutbtn{

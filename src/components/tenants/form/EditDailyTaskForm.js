@@ -1,4 +1,4 @@
-import React ,{useContext, useState} from 'react';
+import React ,{useContext, useState, useEffect} from 'react';
 import {Row, Col, Form, Button} from 'react-bootstrap';
 import '../../../App.css'
 import AddIcon from '@mui/icons-material/Add';
@@ -22,12 +22,33 @@ function EditDailyTaskForm(data) {
 
 	const [buttonIsEnable, setButtonIsEnable] = useState(true);
 
+	// useState for all the input fields
+	const [title, setTitle] = useState("");
+	const [date, setDate] = useState("");
+	const [description, setDescription] = useState("");
+
+	useEffect(()=>{
+		setTitle(data.title)
+		setDate(data.date)
+		setDescription(data.description)
+
+	},[])
+
+	useEffect(()=>{
+
+		const timeoutId = setTimeout(() => editDailyTask(), 1000);
+		return () => clearTimeout(timeoutId);  	   
+		
+
+	},[title, date, description])
+
+
 	const editDailyTask = (e) =>{
-		e.preventDefault()
+		// e.preventDefault()
 
 		setButtonIsEnable(false);
 
-		toast.success('Save Successfully', {
+		toast.success('Updated Successfully', {
 		position: "top-right",
 		autoClose: 2000,
 		hideProgressBar: false,
@@ -39,11 +60,11 @@ function EditDailyTaskForm(data) {
 
 		// delay function
 
-		setTimeout(function(){
+		// setTimeout(function(){
 
-			setDialogClose(false);
+		// 	setDialogClose(false);
 
-		}, 2000); 
+		// }, 2000); 
 
 	}
 	
@@ -56,7 +77,8 @@ function EditDailyTaskForm(data) {
 					      type="text"
 					      name="title"
 					      required
-					      defaultValue={data.title}
+					      value={title}
+					      onChange={(e)=>setTitle(e.target.value)}
 					      placeholder=" "
 					      className="formItem mt-3 form__input"
 					    />
@@ -67,7 +89,8 @@ function EditDailyTaskForm(data) {
 					    <Form.Control
 					      type="text"
 					      name="description"
-					      defaultValue={data.description}
+					      value={description}
+					      onChange={(e)=>setDescription(e.target.value)}
 					      required
 					      placeholder=" "
 					      className="formItem mt-3 form__input"
@@ -76,17 +99,18 @@ function EditDailyTaskForm(data) {
 			 		</Col>
 			 			<Col md="6" sm="8" className="mx-auto  colItem" >
 					    <Form.Control
-					      type="text"
+					      type="date"
 					      name="date"
 					      required
-					      value={data.date}
+					      value={date}
+					      onChange={(e)=>setDate(e.target.value)}
 					      placeholder=" "
 					      className="formItem mt-3 form__input"
 					    />
 					    <label htmlFor="date">Date</label>
 			 		</Col>
 			 		<Col md="12" className="d-flex justify-content-center">
-			 			{buttonIsEnable == true ? 
+			 			{/*{buttonIsEnable == true ? 
 			 				<button id="actionBtn" type="submit">
 				 			 <SaveAltIcon />
 			                  <div className="d-inline px-2">SAVE DATA</div>
@@ -99,7 +123,7 @@ function EditDailyTaskForm(data) {
 		                </button>
 
 			 			}
-			 			 
+			 			 */}
 		                 <ToastContainer
 						position="top-right"
 						autoClose={5000}

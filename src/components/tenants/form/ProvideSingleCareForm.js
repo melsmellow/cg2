@@ -1,4 +1,4 @@
-import React , {useContext, useState} from 'react';
+import React , {useContext, useState, useEffect} from 'react';
 import {Row, Col, Form, Button} from 'react-bootstrap';
 import '../../../App.css'
 import AddIcon from '@mui/icons-material/Add';
@@ -20,10 +20,27 @@ function ProvideSingleCareForm() {
 	const { content, setContent, dialogClose, setDialogClose} = useContext(AppContext);
 
 	const [buttonIsEnable, setButtonIsEnable] = useState(true);
+		// useState for all the input fields
+	const [date, setDate] = useState("");
+	const [time, setTime] = useState("");
+	const [title, setTitle] = useState("");
+	const [note, setNote] = useState("");
+
+
+	useEffect(()=>{
+
+		if(date !== "" && time !== "" && title !== "" && note !== ""){
+
+			const timeoutId = setTimeout(() => provideCare(), 1000);
+			return () => clearTimeout(timeoutId);  	   
+
+		}
+
+	},[date, time, title, note])
 
 	const provideCare = (e) =>{
-		console.log("hello")
-		e.preventDefault();
+		// console.log("hello")
+		// e.preventDefault();
 		// add alert here
 		setButtonIsEnable(false);
 
@@ -57,6 +74,8 @@ function ProvideSingleCareForm() {
 					      type="date"
 					      name="date"
 					      required
+					      value={date}
+					      onChange={(e)=>setDate(e.target.value)}
 					      placeholder=" "
 					      className="formItem mt-3 form__input"
 					    />
@@ -68,6 +87,8 @@ function ProvideSingleCareForm() {
 					      type="time"
 					      name="time"
 					      required
+					      value={time}
+					      onChange={(e)=>setTime(e.target.value)}
 					      placeholder=" "
 					      className="formItem mt-3 form__input"
 					    />
@@ -79,6 +100,8 @@ function ProvideSingleCareForm() {
 					      type="text"
 					      name="report"
 					      required
+					      value={title}
+					      onChange={(e)=>setTitle(e.target.value)}
 					      placeholder=" "
 					      className="formItem mt-3 form__input"
 					    />
@@ -88,11 +111,12 @@ function ProvideSingleCareForm() {
 			 		<Col md="10" sm="10"  className="mx-auto mb-3 colItem">
 			 		  <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
 					    <Form.Label>Note</Form.Label>
-					    <Form.Control required as="textarea" rows={3} />
+					    <Form.Control required as="textarea" rows={3} value={note}
+					      onChange={(e)=>setNote(e.target.value)}/>
 					  </Form.Group>
 				    </Col>
 			 		<Col md="12" className="d-flex justify-content-center">
-			 			{buttonIsEnable == true ? 
+			 			{/*{buttonIsEnable == true ? 
 		 				<button id="actionBtn" type="submit">
 				 			 <AddIcon />
 			                  <div className="d-inline px-2">PROVIDE CARE</div>
@@ -104,7 +128,7 @@ function ProvideSingleCareForm() {
 			                  <div className="d-inline px-2">PROVIDE CARE</div>
 		                </button>
 
-			 			}
+			 			}*/}
 			 			
 
 		                 <ToastContainer
