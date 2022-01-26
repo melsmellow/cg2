@@ -8,13 +8,43 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 
 
+// axios api
+import api from "./api/api";
+
+
 
 function App() {
 
   // global useState for sidebar toggle
   const [sideBarShowing, setSidebarShowing] = useState(false);
   const [content, setContent] = useState("")
-  const [user, setUser] = useState(null)
+  const [user,setUser]= useState({
+
+    id:null,
+    user_type:null
+
+  })
+
+  // checking for logged in user
+  useEffect(()=>{
+     let token = localStorage.getItem('token');
+     api.get('/users/details' , {
+          headers: {Authorization: `Bearer ${token}`}
+    }).then(result => {
+        if(typeof result.data._id !== "undefined"){
+          setUser({
+            id: result.data._id,
+            user_type: result.data.user_type
+          })
+        }else{
+          setUser({
+            id:null,
+            user_type: null
+          })
+        }   
+    })
+
+  },[])
 
   
 

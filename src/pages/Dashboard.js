@@ -1,7 +1,7 @@
 import '../App.css'
 import React ,{useEffect,useContext, useState}from 'react';
 import {Row, Col ,Card,Button , CardGroup, Table} from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 // global variable
 import AppContext from '../AppContext';
 // component
@@ -20,19 +20,20 @@ function Dashboard(){
 	const navigate = useNavigate();
 	const {user, content, setContent} = useContext(AppContext);
 
+	let userIdval = localStorage.getItem('userId');
+	console.log(userIdval)
 	useEffect(()=> {
 		setContent("dashboard");
 
 	},[])
 
 	return(
-		
+		(userIdval == null) 
+		? <Navigate to="/"/>
+		:
 		<div className="mainContainer ">
 			<SideBar />
-		{user !== null
-		?
-			
-		
+	
 			<div md="12" className="Dashboard">
 				
 				 {content === "dashboard" ? 
@@ -55,7 +56,7 @@ function Dashboard(){
 				
 				
 			</div>
-		:  navigate('/') 	}
+		 	
 		</div>
 
 	)

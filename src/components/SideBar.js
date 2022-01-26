@@ -18,6 +18,8 @@ function Sidebar() {
   const navigate = useNavigate();
   const { user, setUser, unsetUser, sideBarShowing, setSidebarShowing, content, setContent} = useContext(AppContext);
   const [sidebar, setSidebar] = useState(false);
+  let userIdval = localStorage.getItem('userId');
+  let name = localStorage.getItem('name');
 
   console.log(user)
 
@@ -67,8 +69,8 @@ function Sidebar() {
                 />
               </Form>
               <div id="loggeInUser" >
-                 Hello {user}
-                {user !== null ? 
+                 Hello {name}
+                {userIdval !== null ? 
                   <button onClick={logOut} id="logOutbtn" className="btn">Log out</button>
                   : null}
                 

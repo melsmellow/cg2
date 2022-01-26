@@ -16,6 +16,9 @@ import Footer from '../components/Footer'
 import Aos from "aos";
 import "aos/dist/aos.css";
 
+// axios api
+import api from "../api/api";
+
 // global variables
 import AppContext from '../AppContext';
 
@@ -26,27 +29,73 @@ function Home() {
   const { user, setUser} = useContext(AppContext);
   const [email , setEmail] = useState("")
   const [password, setPassword] = useState("")
+  let userIdval = localStorage.getItem('userId');
 
-  console.log(email)
-  console.log(password)
-  const loginUser = () => {
-      setUser(email)
-      console.log(user)
-      localStorage.setItem('user', email)
-      Swal.fire({
-      title: 'Login successfully',
-      icon: 'success',
-      text: 'Welcome'
+  // function to login user
+  const loginUser = async (e) => {
+
+    e.preventDefault()
+    const input = {
+      email: email, 
+      password: password
+    }
+
+     await api.post('/users/login', input )
+    .then(result => {
+      if (typeof result.data.access !== "undefined"){
+        localStorage.setItem('token' , result.data.access)
+        retrieveUserDetails(result.data.access)
+        Swal.fire({
+            title: 'Login Successful!',
+            icon: 'success',
+            text: "Welcome"
+        })
+
+        
+
+      }else {
+        Swal.fire({
+          title: 'Authentication failed',
+          icon: 'error',
+          text: 'Check login details'
+        })
+      }
+      
     })
 
-    navigate("/dashboard")
+    
   }
+
+  // function for retrieving user's details
+  const retrieveUserDetails = async (token) => {
+
+    await api.get('/users/details' , {
+          headers: {Authorization: `Bearer ${token}`}
+    }).then(result => {
+        console.log(result.data)
+         
+         // store user details on localStorage upon log in
+         localStorage.setItem('userId' , result.data._id)
+         localStorage.setItem('email' , result.data.email)
+         localStorage.setItem('name' , result.data.firstName)
+
+        setUser({
+          id: result.data._id,
+          user_type: result.data.user_type
+        })
+
+        navigate("/dashboard")
+    })
+
+  }
+
 
   useEffect(() => {
     Aos.init({});
 
   }, [])
 
+  console.log(user)
   return (
   	<div>
   	<AppNavBar/>
@@ -54,7 +103,7 @@ function Home() {
       <div id="mainBody">
          
 
-         {user == null ?
+         {userIdval == null ?
           <div md="8" sm="12" className=" mt-5 " id="container">
            <Row >
              <Col lg="6" md="8" className="my-5 mx-auto">
@@ -64,7 +113,11 @@ function Home() {
               <Form onSubmit={(e) => loginUser(e)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} />
+                  <Form.Control 
+                  type="email" 
+                  placeholder="Enter email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)} />
                   <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                   </Form.Text>
@@ -72,7 +125,10 @@ function Home() {
     
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
+                  <Form.Control 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}type="password" 
+                  placeholder="Password" />
                 </Form.Group>
 
                 {(password == "" || email == "") ?
