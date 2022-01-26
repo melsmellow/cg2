@@ -441,3 +441,17 @@ body {
   padding-top: 20px;
    box-shadow: 5px 10px #bfbfbf;
 }
+
+
+#studInfoTable th{
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
+#studInfoTable {
+  font-size: 18px;
+}
+
+
+

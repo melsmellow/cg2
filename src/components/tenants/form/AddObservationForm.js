@@ -3,6 +3,7 @@ import {Row, Col, Form, Button} from 'react-bootstrap';
 import '../../../App.css'
 import AddIcon from '@mui/icons-material/Add';
 import Swal from 'sweetalert2'
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 // global variable
 import AppContext from '../../../AppContext';
@@ -14,16 +15,77 @@ import 'react-toastify/dist/ReactToastify.css';
 // pop up
 import Popup from '../../Popup';
 
+// speech recognition
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+
+const mic = new SpeechRecognition()
+
+mic.continous = true
+mic.interimResults = true
+mic.lang = 'en-US'
+
 function AddObservationForm() {
 
 	const { content, setContent, dialogClose, setDialogClose} = useContext(AppContext);
 
-	console.log(dialogClose);
 	// useState for all the input fields
 	const [date, setDate] = useState("");
 	const [time, setTime] = useState("");
 	const [displayTo, setDisplayTo] = useState("");
 	const [note, setNote] = useState("");
+
+
+	const [isListening , setIsListening] = useState(false);
+	const [speechToText , setSpeechToText] = useState(false);
+
+	console.log(isListening)
+
+	useEffect(()=>{
+
+
+
+	}, [speechToText])
+
+	useEffect(()=>{
+		handleListen();
+	},[isListening])
+	// function for speech recognition
+	const handleListen = () => {
+
+		if(isListening){
+			mic.start()
+			mic.onend = () => {
+				console.log('continue. . .')
+				mic.start()
+			}
+		}else if(isListening){
+			mic.stop()
+			mic.onend = () => {
+				console.log('Stopped mic on click')
+
+			}
+		}
+
+		mic.onstart = () =>{
+			console.log('Mic is on')
+		}
+
+		mic.onresult = event => {
+			const transcript = Array.from(event.results)
+			.map(result => result[0])
+			.map(result => result.transcript)
+			.join('')
+
+			console.log(transcript)
+			setNote([...note, transcript])
+			mic.onerror = event =>{
+				console.log(event.error)
+			}
+		}
+
+	}
+
+
 
 
 	useEffect(()=>{
@@ -65,9 +127,9 @@ function AddObservationForm() {
 			setDialogClose(false);
 
 		}, 2000); 
-		
-
 	}
+
+
 
 	return (
 		<div>
@@ -119,6 +181,7 @@ function AddObservationForm() {
 					  </Form.Group>
 				    </Col>
 			 		<Col md="12" className="d-flex justify-content-center">
+			 		
 			 			{/*{buttonIsEnable == true ?
 			 			 <button id="actionBtn" type="submit">
 				 			 <AddIcon />
@@ -146,6 +209,14 @@ function AddObservationForm() {
 			 		</Col> 		
 			 	</Row>
 		 	</Form>
+		 		<button id="actionBtn" onClick={()=>setIsListening(!isListening)}>
+		 			 <KeyboardVoiceIcon />
+		 			 {isListening ? 
+		 			 <div className="d-inline px-2">Off Mic</div>
+		 			 : <div className="d-inline px-2">On Mic</div>}
+	                  
+			 			
+		        </button>
 		</div>
 	)
 }

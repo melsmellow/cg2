@@ -35,10 +35,10 @@ function EditDailyTaskForm(data) {
 	},[])
 
 	useEffect(()=>{
-
-		const timeoutId = setTimeout(() => editDailyTask(), 1000);
-		return () => clearTimeout(timeoutId);  	   
 		
+		const timeoutId = setTimeout(() => editDailyTask(), 1000);
+		return () => clearTimeout(timeoutId);  
+	
 
 	},[title, date, description])
 
@@ -124,7 +124,7 @@ function EditDailyTaskForm(data) {
 
 			 			}
 			 			 */}
-		                 <ToastContainer
+			 			<ToastContainer
 						position="top-right"
 						autoClose={5000}
 						hideProgressBar={false}
@@ -135,6 +135,7 @@ function EditDailyTaskForm(data) {
 						draggable
 						pauseOnHover
 						/>
+		                 
 			 		</Col> 		
 			 	</Row>
 		 	</Form>

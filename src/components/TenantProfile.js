@@ -86,63 +86,28 @@ function TenantProfile(data) {
 					
 					   
 			 		</Col>
-			 		 <Col md="6" sm="8" className="mx-auto mb-3 colItem" >
-					    <Form.Control
-					      type="text"
-					      name="name"
-					      required
-					      value={data.name}
-					      placeholder=" "
-					      className="formItem mt-3 form__input"
-					    />
-					    <label htmlFor="name">Name</label>
-
+			 		<Col md="12" className="mx-auto d-flex justify-content-center">
+			 		 	<table id="studInfoTable">
+						  <tr>
+						    <th className="pr-5">Name:</th>
+						    <td className="pr-5">{data.name}</td>
+						    <th className="pr-5">Age:</th>
+						    <td>{data.age}</td>
+						  </tr>
+						  <tr>
+						    <th className="pr-5">Status:</th>
+						    <td className="pr-5">{data.status}</td>
+						    <th className="pr-5">Birthday:</th>
+						    <td>{data.birthday}</td>
+						  </tr>
+						  <tr>
+						    <th className="pr-5">Address:</th>
+						    <td className="pr-5">{data.address}</td>
+						    
+						  </tr>
+						 </table>
 			 		</Col>
-			 		 <Col md="6" sm="8" className="mx-auto mb-3 colItem ">
-					    <Form.Control
-					      type="text"
-					      name="age"
-					      required
-					   	  value={data.age}
-					      placeholder=" "
-					      className="formItem mt-3 form__input"
-					    />
-					    <label htmlFor="age">Age</label>
-			 		</Col>
-			 		<Col md="6" sm="8"  className="mx-auto mb-3 colItem">
-					    <Form.Control
-					      type="text"
-					      name="status"
-					      required
-					      value={data.status}
-					 	  placeholder=" "
-					      className="formItem mt-3 form__input"
-					    />
-					    <label>Status</label>
-			 		</Col>
-			 		<Col md="6" sm="8"  className="mx-auto mb-3 colItem">
-					    <Form.Control
-					      type="text"
-					      name="bDay"
-					      required
-					      value={data.birthday}
-					 	  placeholder=" "
-					      className="formItem mt-3 form__input"
-					    />
-					    <label>Birthday</label>
-			 		</Col>
-			 		<Col md="6" sm="8"  className="mx-auto mb-3 colItem">
-					    <Form.Control
-					      type="text"
-					      name="adress"
-					      required
-					      value={data.address}
-					 	  placeholder=" "
-					      className="formItem mt-3 form__input"
-					    />
-					    <label>Address</label>
-			 		</Col>
-			 		
+			 		 
 			 		<Col md="12" id="actionHolder">
 				 		<Col md="12" id="subTitle" className="mb-3 py-2">
 
