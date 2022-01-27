@@ -43,17 +43,39 @@ import {historyData} from '../historyData'
 
 function TenantProfile(data) {
 
+	const [age, setAge] = useState('');
 	// state for tenant action tab
 	const [currentTab, setCurrentTab] = useState("provide service");
+
+
 	useEffect(() => {
 
 		console.log(currentTab)
 
 	},[currentTab])
 	
+   const cutBirthday = (string) => {
+		let date = new Date(string)
+		const month = date.toLocaleString('en-us', { month: 'long' }); /* June */
+		const day = date.getUTCDate();
+		const year = date.getUTCFullYear();
 
-   const current = new Date();
-   const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+
+		let fullDate = month + " " + day + ", " + year 
+		return fullDate
+	}
+
+
+	const getTheAge = (birthday) => {
+		let date = new Date(birthday)
+		let currentYear = new Date().getFullYear()
+		let year = date.getUTCFullYear();
+
+		const age = currentYear - year
+
+		return age
+	}
+
 	
 	return (
 		<div>
@@ -62,25 +84,18 @@ function TenantProfile(data) {
 			 		 <Col md="12" sm="12" className="mx-auto mb-3 colItem" >
 			 		 	<Row>
 			 		 		<Col md="4" className="mb-3 text-center">
-					   			 <h4>Tenant Id: {data.id}</h4>
 					   			 <div className="mx-auto d-flex justify-content-center">
-					   			 {data.tenant == 1 ? 
-							    <img id="tenantPic" src={tenant1} alt=""></img> 
-							    : data.tenant == 2 ?
-							     <img id="tenantPic" src={tenant2} alt=""></img> 
-							    : data.tenant == 3 ?
-							     <img id="tenantPic" src={tenant3} alt=""></img> 
-							    : data.tenant == 4 ?
-							     <img id="tenantPic" src={tenant4} alt=""></img> 
-							    : data.tenant == 5 ?
-							     <img id="tenantPic" src={tenant5} alt=""></img> 
-							    : null
-								}
+					   			
+							    <img id="tenantPic" className="mt-5" src={data.data.picture} alt=""></img> 
+							 
 								</div>
 					   		</Col>
+					   		<h4 className="mb-3 mt-5">Allergies:</h4>
 					   		<Col md="8" id="allergyLabel">
-					   			<h4 className="mb-3 mt-5">Allergies: <h5>{data.allergies}</h5></h4>
-					   			<h4>Code Status: <h5></h5></h4>
+
+					   		{/*	<h4 className="mb-3 mt-5">Allergies:</h4>
+					   			<h5>{data.data.status}</h5>
+					   			<h4>Code Status: <h5></h5></h4>*/}
 					   		</Col>
 			 		 	</Row>
 					
@@ -90,19 +105,19 @@ function TenantProfile(data) {
 			 		 	<table id="studInfoTable">
 						  <tr>
 						    <th className="pr-5">Name:</th>
-						    <td className="pr-5">{data.name}</td>
+						    <td className="pr-5">{data.data.firstName}{" "}{data.data.middleName}{" "}{data.data.lastName}</td>
 						    <th className="pr-5">Age:</th>
-						    <td>{data.age}</td>
+						    <td>{getTheAge(data.data.birthday)}</td>
 						  </tr>
 						  <tr>
 						    <th className="pr-5">Status:</th>
-						    <td className="pr-5">{data.status}</td>
+						    <td className="pr-5">{data.data.status}</td>
 						    <th className="pr-5">Birthday:</th>
-						    <td>{data.birthday}</td>
+						    <td>{cutBirthday(data.data.birthday)}</td>
 						  </tr>
 						  <tr>
 						    <th className="pr-5">Address:</th>
-						    <td className="pr-5">{data.address}</td>
+						    <td className="pr-5">{data.data.address}</td>
 						    
 						  </tr>
 						 </table>

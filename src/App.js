@@ -7,7 +7,6 @@ import {AppProvider} from './AppContext';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 
-
 // axios api
 import api from "./api/api";
 
@@ -18,6 +17,7 @@ function App() {
   // global useState for sidebar toggle
   const [sideBarShowing, setSidebarShowing] = useState(false);
   const [content, setContent] = useState("")
+  const [tenantList, setTenantList] = useState("")
   const [user,setUser]= useState({
 
     id:null,
@@ -46,6 +46,24 @@ function App() {
 
   },[])
 
+  // code for fetching tenant
+  useEffect(()=>{
+    fetchTenant();
+  }, [])
+
+  const fetchTenant = () =>{
+
+    let token = localStorage.getItem('token');
+    api.get('/tenants/fetch' , {
+        headers:{
+          'Authorization' : `Bearer ${token}`
+        }
+      }).then(res => {
+        console.log(res)
+        setTenantList(res.data)
+      })
+  }
+
   
 
   // for tenant action 
@@ -73,7 +91,7 @@ function App() {
  
 
   return (
-    <AppProvider value={{action , setAction, dialogClose, setDialogClose, user,setUser, unsetUser, sideBarShowing, setSidebarShowing , content ,setContent}}>
+    <AppProvider value={{ tenantList, setTenantList, action , setAction, dialogClose, setDialogClose, user,setUser, unsetUser, sideBarShowing, setSidebarShowing , content ,setContent}}>
       <Router>
           <Routes>
             <Route path="/" element={<Home/>}/>
