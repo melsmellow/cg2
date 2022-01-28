@@ -18,13 +18,14 @@
     "mdbreact": "^5.2.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.4",
+    "react-confirm-box": "^1.2.0",
     "react-dom": "^17.0.2",
     "react-hook-speech-to-text": "^0.8.0",
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-toastify": "^8.1.0",
-    "sweetalert2": "^11.3.0",
+    "sweetalert2": "^11.3.10",
     "web-vitals": "^2.1.2"
   },
   "scripts": {

@@ -102,6 +102,7 @@ export default function CustomizedDialogs({children}) {
 
   // const { content, setContent} = useContext(AppContext);
   const [open, setOpen] = React.useState(false);
+  const [maxWidth, setMaxWidth] = React.useState('lg');
 
   const handleClickOpen = () => {
     setOpen(true);

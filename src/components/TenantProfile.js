@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect , useContext} from 'react';
 import {Row, Col, Form, Button, Table} from 'react-bootstrap';
 import '../App.css'
 import AddIcon from '@mui/icons-material/Add';
@@ -15,7 +15,8 @@ import FindInPageIcon from '@mui/icons-material/FindInPage';
 
 // components
 import Popup from './Popup';
-
+// pages
+import Allergies from './tenants/Allergies';
 // local image
 import tenant1 from '../images/tenant1.jpg';
 import tenant2 from '../images/tenant2.jpg';
@@ -41,11 +42,41 @@ import FileIncidentReportPopup from './tenants/FileIncidentReportPopup';
 
 import {historyData} from '../historyData'
 
-function TenantProfile(data) {
+// global variable
+import AppContext from '../AppContext';
 
+// axios api
+import api from "../api/api";
+
+function TenantProfile(data) {
 	const [age, setAge] = useState('');
-	// state for tenant action tab
-	const [currentTab, setCurrentTab] = useState("provide service");
+	const { allergiesList, setAllergiesList, currentTab, setCurrentTab } = useContext(AppContext);
+
+
+	useEffect(() => {
+		localStorage.setItem('tenantId' , data.data._id)
+	}, [])
+
+	// code for fetching allergy
+	  useEffect(()=>{
+	    fetchAllergy();
+	  }, [])
+
+	  const fetchAllergy = () =>{
+
+	    let token = localStorage.getItem('token');
+	    let tenantId = localStorage.getItem('tenantId');
+	    api.get(`/tenants/allergy/${tenantId}/fetch` , {
+	        headers:{
+	          'Authorization' : `Bearer ${token}`
+	        }
+	      }).then(res => {
+	        console.log(res)
+	        setAllergiesList(res.data)
+	      })
+	  }
+
+
 
 
 	useEffect(() => {
@@ -65,7 +96,6 @@ function TenantProfile(data) {
 		return fullDate
 	}
 
-
 	const getTheAge = (birthday) => {
 		let date = new Date(birthday)
 		let currentYear = new Date().getFullYear()
@@ -81,27 +111,23 @@ function TenantProfile(data) {
 		<div>
 {/*	 		<Form id="form">*/}
 			 	<Row>
-			 		 <Col md="12" sm="12" className="mx-auto mb-3 colItem" >
+			 		 <Col md="12" sm="12" className="mx-auto mb-3 colItem mt-3" >
 			 		 	<Row>
-			 		 		<Col md="4" className="mb-3 text-center">
-					   			 <div className="mx-auto d-flex justify-content-center">
-					   			
-							    <img id="tenantPic" className="mt-5" src={data.data.picture} alt=""></img> 
-							 
-								</div>
+			 		 		<Col md="2">
+					   	
+							    <img id="tenantPic" className="ml-3" src={data.data.picture} alt=""></img> 
+							
 					   		</Col>
-					   		<h4 className="mb-3 mt-5">Allergies:</h4>
-					   		<Col md="8" id="allergyLabel">
-
-					   		{/*	<h4 className="mb-3 mt-5">Allergies:</h4>
-					   			<h5>{data.data.status}</h5>
-					   			<h4>Code Status: <h5></h5></h4>*/}
+					   		<Col md="8" className="d-flex">
+					   		<h4 className="">Allergies:</h4>
+					   		{allergiesList.map(item =>
+					   		 <p className="px-1 d-flex">• {item.allergy}</p>)}
 					   		</Col>
 			 		 	</Row>
 					
 					   
 			 		</Col>
-			 		<Col md="12" className="mx-auto d-flex justify-content-center">
+			 		<Col md="12" className="mx-auto">
 			 		 	<table id="studInfoTable">
 						  <tr>
 						    <th className="pr-5">Name:</th>
@@ -124,8 +150,9 @@ function TenantProfile(data) {
 			 		</Col>
 			 		 
 			 		<Col md="12" id="actionHolder">
-				 		<Col md="12" id="subTitle" className="mb-3 py-2">
+				 		<Col md="12" id="subTitle" className="mb-3 py-1 px-0">
 
+				 			{/*button for all the available action*/}
 				 			{currentTab == 'provide service'
 				 			? <div className="btn p-0" 
 				 		 	   id='actionBtn5active'
@@ -176,29 +203,37 @@ function TenantProfile(data) {
 				 		 		<p className="p-1">Add Reports</p>
 				 		 	</div>}
 
+				 		 	 {currentTab == 'allergy'
+				 		 	 ?<div className="btn p-0" id="actionBtn5active"  onClick={() => setCurrentTab("allergy")}>
+				 		 		<p className="p-1">Allergies</p>
+				 		 	</div>
+				 		 	 :<div className="btn p-0" id="actionBtn5"  onClick={() => setCurrentTab("allergy")}>
+				 		 		<p className="p-1">Allergies</p>
+				 		 	</div>}
+
 				 		 	
 
 				 		 </Col>
 				 		 {currentTab == 'provide service'
 				 		 ?<Col>
-				 		 <Col id="tenantActionContainer" md="8" >
-				 			<Col className="px-0">
+				 		 <Col id="tenantActionContainer" md="10" className="mx-auto mt-3">
+				 			<Col md="4" className="px-0">
 					 			<AddObservationPopup>
 										<AddObservationForm/>
 								</AddObservationPopup>
 							</Col>
-							<Col className="px-2">
+							<Col md="4" className="px-2">
 					 			<DailyTaskPopup>
 										<DailyTaskForm/>
 								</DailyTaskPopup>
 							</Col>
-							<Col className="px-0">
+							<Col md="4" className="px-0">
 					 			<ProvideSingleCarePopup>
 										<ProvideSingleCareForm/>
 								</ProvideSingleCarePopup>
 							</Col>
 				 		</Col> 	
-				 		<Col id="tenantActionContainer" md="8" className="mx-auto mt-3">
+				 		<Col id="tenantActionContainer" md="10" className="mx-auto mt-3">
 				 			<Col className="px-0">
 					 			<MedicalPassPopup>
 										<MedicalPassForm/>
@@ -409,41 +444,14 @@ function TenantProfile(data) {
 				 		</Col> 
 				 		
 				 		</Col>
+				 		: currentTab === "allergy"?
+				 		<Allergies/>
 				 		: null}
 				 		
 
 
 			 		</Col>
 
-
-
-
-			 			{/**/}
-			 			{/*<Col md="12" className="mx-auto mt-5">
-				 		<h2>Activity History</h2>
-					 	<Table  hover className="table">
-						  <thead>
-						    <tr>
-						     
-						      <th>Title</th>
-						      <th>Description</th>
-						      <th>Date</th>
-						    </tr>
-						  </thead>
-						  <tbody>
-						   	  <tr>
-						   	  	<td>1st Dose Vaccine</td>
-						   	  	<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, architecto illo, unde </td>
-						   	  	<td>{date}</td>
-						   	  </tr>
-						   	   <tr>
-						   	  	<td>Oxygen</td>
-						   	  	<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, architecto illo, unde </td>
-						   	  	<td>{date}</td>
-						   	  </tr>
-						  </tbody>
-						</Table>
-						</Col>*/}
 			 	</Row>
 		</div>
 	)

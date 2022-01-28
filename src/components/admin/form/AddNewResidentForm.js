@@ -110,10 +110,6 @@ function AddNewResidentForm() {
 			}).catch(err=>{
 				console.log(err)
 			})
-
-		
-		
-
 	}
 
 	return (

@@ -3,7 +3,7 @@ import {Row , Col, Table} from 'react-bootstrap';
 import AppContext from '../AppContext';
 
 // component
-import Popup from './Popup';
+import Popup from './tenants/Popup';
 import TenantProfile from './TenantProfile';
 
 // axios api

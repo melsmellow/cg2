@@ -6,6 +6,7 @@ import {AppProvider} from './AppContext';
 // pages
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
+import Allergies from './components/tenants/Allergies';
 
 // axios api
 import api from "./api/api";
@@ -18,6 +19,11 @@ function App() {
   const [sideBarShowing, setSidebarShowing] = useState(false);
   const [content, setContent] = useState("")
   const [tenantList, setTenantList] = useState("")
+  const [ allergiesList, setAllergiesList] = useState([]);
+
+    // state for tenant action tab
+  const [ currentTab, setCurrentTab] = useState("provide service");
+
   const [user,setUser]= useState({
 
     id:null,
@@ -91,11 +97,12 @@ function App() {
  
 
   return (
-    <AppProvider value={{ tenantList, setTenantList, action , setAction, dialogClose, setDialogClose, user,setUser, unsetUser, sideBarShowing, setSidebarShowing , content ,setContent}}>
+    <AppProvider value={{ allergiesList, setAllergiesList, currentTab, setCurrentTab,  tenantList, setTenantList, action , setAction, dialogClose, setDialogClose, user,setUser, unsetUser, sideBarShowing, setSidebarShowing , content ,setContent}}>
       <Router>
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/dashboard" element={<Dashboard/>}/>
+            <Route path="/table" element={<Allergies/>}/>
           </Routes>
       </Router>
     </AppProvider>

@@ -99,7 +99,7 @@ BootstrapDialogTitle.propTypes = {
 
 export default function CustomizedDialogs({children}) {
 
- const { action, setAction, content, setContent, dialogClose, setDialogClose} = useContext(AppContext);
+ const { currentTab, setCurrentTab, action, setAction, content, setContent, dialogClose, setDialogClose} = useContext(AppContext);
   const [open, setOpen] = React.useState(false);
 
   useEffect(()=>{
@@ -128,9 +128,14 @@ export default function CustomizedDialogs({children}) {
 
   return (
     <div>
-       <BootstrapButton startIcon={<AssignmentIcon />} variant="contained" id="actionBtn"onClick={handleClickOpen}>
-       Daily Task
+       {currentTab === "allergy"?
+       <BootstrapButton startIcon={<AssignmentIcon />} variant="contained" id="actionBtn2"onClick={handleClickOpen}>
+      New
       </BootstrapButton>
+       :<BootstrapButton startIcon={<AssignmentIcon />} variant="contained" id="actionBtn"onClick={handleClickOpen}>
+       Daily Task
+      </BootstrapButton>}
+       
      
       <BootstrapDialog
         onClose={handleClose}
@@ -138,10 +143,14 @@ export default function CustomizedDialogs({children}) {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-     
-         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Daily Task
+      {currentTab === "allergy" ?
+       <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+         Add New Allergy
         </BootstrapDialogTitle>
+      : <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+          Daily Task
+        </BootstrapDialogTitle>}
+        
       
    
         

@@ -419,6 +419,18 @@ body {
 
 }
 
+#actionBtn7{
+  font-size: 12px;
+  background-color: #0E1B27;
+  width: 180px;
+  color: white;
+
+}
+
+#actionBtn7:hover{
+  transform: scale(1.02);
+  background-color:  #294e70;
+}
 
 #subTitle{
   background-color: #0E1B27;
@@ -434,12 +446,16 @@ body {
   margin-left: 320px;
   border-bottom: 2px solid black;
 }
+#searchBar2{
+  margin-left: 580px;
+  border-bottom: 2px solid black;
+}
 
 #actionHolder{
   height: auto;
   padding-bottom: 20px;
   padding-top: 20px;
-   box-shadow: 5px 10px #bfbfbf;
+/*   box-shadow: 5px 10px #bfbfbf;*/
 }
 
 
@@ -456,4 +472,26 @@ body {
 
 #form{
   font-weight: bold;
+}
+
+
+#allergy-table th{
+ font-weight: bold;
+}
+
+
+#noFound{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#del-Btn{
+  background-color:#ce313f ;
+  padding: 0;
+  text-transform: capitalize;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  width: 80px;
+  height: 30px;
 }
