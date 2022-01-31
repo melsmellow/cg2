@@ -94,8 +94,6 @@ function EditAllergyForm(data) {
 			})
 
 			// adding history to database
-			
-
 			const input2 = {
 
 				title: `Edited ${tenantName}'s allergy data on ${allergy}` ,
