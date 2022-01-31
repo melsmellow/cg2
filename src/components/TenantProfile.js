@@ -17,6 +17,7 @@ import FindInPageIcon from '@mui/icons-material/FindInPage';
 import Popup from './Popup';
 // pages
 import Allergies from './tenants/Allergies';
+import History from './History';
 // local image
 import tenant1 from '../images/tenant1.jpg';
 import tenant2 from '../images/tenant2.jpg';
@@ -39,6 +40,7 @@ import ProvideSingleCarePopup from './tenants/ProvideSingleCarePopup';
 import MedicalPassPopup from './tenants/MedicalPassPopup';
 import EnterVitalsPopup from './tenants/EnterVitalsPopup';
 import FileIncidentReportPopup from './tenants/FileIncidentReportPopup';
+import EditAllergyForm from './tenants/form/EditAllergyForm';
 
 import {historyData} from '../historyData'
 
@@ -50,11 +52,38 @@ import api from "../api/api";
 
 function TenantProfile(data) {
 	const [age, setAge] = useState('');
-	const { allergiesList, setAllergiesList, currentTab, setCurrentTab } = useContext(AppContext);
+	const { allergyTypeList, setAllergyTypeList, historyList, setHistoryList, allergiesList, setAllergiesList, currentTab, setCurrentTab } = useContext(AppContext);
 
+	const fetchTenantHistory = async () =>{
+
+		let token = localStorage.getItem('token');
+		let tenantId = localStorage.getItem('tenantId');
+		
+		await api.get(`/history/${tenantId}/fetch` , {
+	        headers:{
+	          'Authorization' : `Bearer ${token}`
+	        }
+	      }).then(res=>{
+
+		    	setHistoryList(res.data)
+
+	    })
+	}
+
+	useEffect(()=>{
+		fetchTenantHistory();
+	}, [])
+
+
+	let fullName = data.data.firstName +" " +data.data.middleName + " " + data.data.lastName
+
+	console.log(fullName)
 
 	useEffect(() => {
-		localStorage.setItem('tenantId' , data.data._id)
+		setCurrentTab('provide service')
+		localStorage.setItem('tenantId' , data.data._id);
+		localStorage.setItem('tenantName' , fullName);
+
 	}, [])
 
 	// code for fetching allergy
@@ -73,18 +102,10 @@ function TenantProfile(data) {
 	      }).then(res => {
 	        console.log(res)
 	        setAllergiesList(res.data)
+
 	      })
 	  }
 
-
-
-
-	useEffect(() => {
-
-		console.log(currentTab)
-
-	},[currentTab])
-	
    const cutBirthday = (string) => {
 		let date = new Date(string)
 		const month = date.toLocaleString('en-us', { month: 'long' }); /* June */
@@ -121,7 +142,7 @@ function TenantProfile(data) {
 					   		<Col md="8" className="d-flex">
 					   		<h4 className="">Allergies:</h4>
 					   		{allergiesList.map(item =>
-					   		 <p className="px-1 d-flex">• {item.allergy}</p>)}
+					   		 <p id="allergy-List" className="px-1 d-flex">• {item.allergy}</p>)}
 					   		</Col>
 			 		 	</Row>
 					
@@ -131,7 +152,7 @@ function TenantProfile(data) {
 			 		 	<table id="studInfoTable">
 						  <tr>
 						    <th className="pr-5">Name:</th>
-						    <td className="pr-5">{data.data.firstName}{" "}{data.data.middleName}{" "}{data.data.lastName}</td>
+						    <td className="pr-5">{fullName}</td>
 						    <th className="pr-5">Age:</th>
 						    <td>{getTheAge(data.data.birthday)}</td>
 						  </tr>
@@ -300,40 +321,7 @@ function TenantProfile(data) {
 
 				 		</Col>
 				 		: currentTab == 'history'
-				 		? <Col>
-					 		<Col md="12" sm="8"  className="mx-auto mb-3 colItem d-flex justify-content-center">
-					
-							<Col md="12" className="mx-auto">
-							<Table  hover className="table" responsive>
-						  <thead>
-						    <tr>
-						     
-						      <th>Activity</th>
-							  <th>Note</th>
-							  <th>Date</th>
-						    </tr>
-						  </thead>
-						  <tbody>
-								{historyData.map((val, key) => {
-									return(
-										<tr key={key}>
-				
-											<td>{val.activity}</td>
-											<td>{val.note}</td>
-											<td>{val.date}</td>
-
-											
-										</tr>
-									)
-								})}
-				
-						  </tbody>
-						</Table>
-						</Col>
-					
-					 		</Col>
-
-				 		</Col>
+				 		? <History/>
 				 		: currentTab == 'care plan' 
 				 		?<Col>
 				 		 <Col id="tenantActionContainer" md="8" >

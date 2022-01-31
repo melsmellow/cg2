@@ -20,6 +20,8 @@ function App() {
   const [content, setContent] = useState("")
   const [tenantList, setTenantList] = useState("")
   const [ allergiesList, setAllergiesList] = useState([]);
+  const [ allergyTypeList, setAllergyTypeList] = useState([]);
+  const [historyList, setHistoryList] = useState([]);
 
     // state for tenant action tab
   const [ currentTab, setCurrentTab] = useState("provide service");
@@ -97,7 +99,7 @@ function App() {
  
 
   return (
-    <AppProvider value={{ allergiesList, setAllergiesList, currentTab, setCurrentTab,  tenantList, setTenantList, action , setAction, dialogClose, setDialogClose, user,setUser, unsetUser, sideBarShowing, setSidebarShowing , content ,setContent}}>
+    <AppProvider value={{ allergyTypeList, setAllergyTypeList, historyList, setHistoryList,  allergiesList, setAllergiesList, currentTab, setCurrentTab,  tenantList, setTenantList, action , setAction, dialogClose, setDialogClose, user,setUser, unsetUser, sideBarShowing, setSidebarShowing , content ,setContent}}>
       <Router>
           <Routes>
             <Route path="/" element={<Home/>}/>

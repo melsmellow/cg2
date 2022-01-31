@@ -2,28 +2,36 @@ import React,{useContext , useEffect, useState} from 'react';
 import {Row , Col, Table} from 'react-bootstrap';
 import AppContext from '../../AppContext';
 
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import NativeSelect from '@mui/material/NativeSelect';
+
 // axios api
 import api from "../../api/api";
 
 import Popup from './DailyTaskPopup';
 import AddNewAllergyForm from './form/AddNewAllergyForm';
 import Swal from 'sweetalert2';
+import EditPopup from './form/EditPopup';
+import EditAllergyForm from './form/EditAllergyForm';
 
 
 // Icons
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@material-ui/core/InputBase';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import AttachmentIcon from '@mui/icons-material/Attachment';
+import EditIcon from '@mui/icons-material/Edit';
 
 function Allergies() {
 
-
 	// global variables
-	const {  allergiesList, setAllergiesList, currentTab, setCurrentTab} = useContext(AppContext);
+	const {  allergyTypeList, setAllergyTypeList, allergiesList, setAllergiesList, currentTab, setCurrentTab} = useContext(AppContext);
 	// state for search word 
 	const [wordEntered, setWordEntered] = useState("");
+	const [allergyTypeInput, setAllergyTypeInput] = useState("");
 	let token = localStorage.getItem('token');
-
 	const formatDate = (string) => {
 		console.log(string)
 		if(string === undefined){
@@ -40,6 +48,38 @@ function Allergies() {
 		}
 		
 	}
+
+	useEffect(() => {
+		setAllergyTypeInput("all")
+	}, [])
+
+	// for filtering the course data based on department named
+	useEffect(() => {
+
+		let token = localStorage.getItem('token');
+	    let tenantId = localStorage.getItem('tenantId');
+	    api.get(`/tenants/allergy/${tenantId}/fetch` , {
+	        headers:{
+	          'Authorization' : `Bearer ${token}`
+	        }
+	      }).then(res => {
+
+			setAllergiesList(res.data)
+			console.log(res)
+			if(allergyTypeInput !== "all"){
+				const newFilter = res.data.filter((value) =>{
+
+				return value.allergyType.toLowerCase().includes(allergyTypeInput.toLowerCase())
+				})
+
+				setAllergiesList(newFilter)
+				console.log(newFilter)
+
+			}
+		})
+		
+	}, [allergyTypeInput])
+
 	 // code for fetching allergy
 	  useEffect(()=>{
 	    fetchAllergy();
@@ -89,12 +129,26 @@ function Allergies() {
 	}
 
 
-	const deleteAllergy = (e, id) =>{
+	const deleteAllergy = (e, id, allergy) =>{
 		e.preventDefault()
-		console.log(id)
 
+		let name = localStorage.getItem('name');
+		let token = localStorage.getItem('token');
+		let tenantName = localStorage.getItem('tenantName');
 		let tenantId = localStorage.getItem('tenantId');
-	  	api.put(`/tenants/allergy/${tenantId}/delete/${id}`).then(result => {
+
+		Swal.fire({
+		  title: 'Are you sure?',
+		  text: "You won't be able to revert this!",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Yes, delete it!'
+		}).then((result) => {
+		  if (result.isConfirmed) {
+
+	  		api.put(`/tenants/allergy/${tenantId}/delete/${id}`).then(result => {
 
 	  		console.log(result)
 
@@ -105,10 +159,46 @@ function Allergies() {
     		})
 
     		setAllergiesList([...allergiesList])
-    		
-    	}).catch(err=>{
-    		
-    	})
+	    		Swal.fire(
+			      'Deleted!',
+			      'The Data has been deleted.',
+			      'success'
+			    )
+
+
+	    		// adding history to database
+				const input2 = {
+
+					title: `Deleted ${tenantName}'s allergy data on ${allergy}` ,
+					tenantName: tenantName,
+					tenantId: tenantId,
+					userName: name,
+			    }
+				api.post(`/history/create/` , input2 , {
+				headers: {
+					 'Authorization' : `Bearer ${token}`
+				}
+				}).then(result => {
+
+
+				}).catch(err=>{
+
+					console.error(err)
+
+				})
+
+
+
+	    	}).catch(err=>{
+	    		Swal.fire({
+		          title: 'fail to delete',
+		          icon: 'error',
+		        })
+	    	})
+
+		  }
+		})
+
 	}
 
 	return (
@@ -117,15 +207,42 @@ function Allergies() {
 				<Col md="12" className="mx-auto d-flex">
 						<Popup>
 							<AddNewAllergyForm/>
-						</Popup>				
+						</Popup>
+							<div id="searchBar2" className="d-flex">
+
+
+						  <Box id="drop-Drown" sx={{ minWidth: 120 }}>
+						      <FormControl fullWidth>
+						        <InputLabel variant="standard" htmlFor="uncontrolled-native">
+						          Allergy Type
+						        </InputLabel>
+						        <NativeSelect
+						          value={allergyTypeInput}
+					      	  onChange= {e => setAllergyTypeInput(e.target.value)}>
+						        >
+					       		
+				 				<option value="Food">Food</option>
+				 				<option value="Environment">Environment</option>
+				 				<option value="Medicine">Medicine</option>
+							 		
+							 		
+										
+							 	
+						          <option value="all">All</option>
+						        </NativeSelect>
+						      </FormControl>
+						    </Box>
+		
 				 		<InputBase
 						  placeholder="Search…"
 						  value={wordEntered}
 	           			  onChange={handleFilter}
 						  inputProps={{ 'aria-label': 'search' }}
-						  endAdornment={<SearchIcon style={{ fontSize: 50 }} className="pr-3"/>}
-						  id="searchBar2"
+						  className="pl-4"
+						  endAdornment={<SearchIcon style={{ fontSize: 50 }} className="pl-3"/>}
+						
 						/>
+						</div>	
 				</Col>
 				<Col md="12" className="mx-auto">
 				<Table id="allergy-table" hover className="table" responsive>
@@ -156,10 +273,17 @@ function Allergies() {
 								<td>{formatDate(val.startDate)}</td>
 								<td>{formatDate(val.endDate)}</td>
 								<td>{val.reaction}</td>
-								<td>add attachment</td>
-								<td><div id="del-Btn" className="btn"
-									onClick={(e)=>deleteAllergy(e,val._id)}><DeleteForeverIcon/> remove
+								<td><div id="edit-Btn" className="btn"
+									>Add<AttachmentIcon/> 
 						    			</div></td>
+								<td>
+								<div className="d-flex ">
+								<EditPopup>
+									<EditAllergyForm data={val}/>
+								</EditPopup>
+								<div id="del-Btn2" className="btn d-flex"
+									onClick={(e)=>deleteAllergy(e,val._id, val.allergy)}><DeleteForeverIcon/> 
+						    			</div></div></td>
 				    			
 				    		</tr>
 				    		

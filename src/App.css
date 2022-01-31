@@ -7,6 +7,7 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 
 }
 body {
@@ -94,7 +95,7 @@ body {
   width: 250px;
   background-color: #0E1B27;
   position: relative;
-  z-index: 5;
+  z-index: 20000 !important;
 
  
 }
@@ -104,7 +105,7 @@ body {
   height: 100vh;
   pointer-events: none;
   position: relative;
-  z-index: 5;
+  z-index: 20000 !important;
 }
 
 .Dashboard{
@@ -122,7 +123,7 @@ body {
   width: 100%;
   height: 100%;
   position: absolute;
-  z-index: 5;
+  z-index: 20000 !important;
  
 }
 
@@ -159,6 +160,7 @@ body {
   margin-right: 10%;
   margin-left: 10%;
   width: 80vw;
+  z-index: 1 !important;
  
 
 }
@@ -494,4 +496,60 @@ body {
   text-align: center;
   width: 80px;
   height: 30px;
+}
+
+
+#del-Btn2{
+  background-color:#ce313f ;
+  padding: 0;
+  padding-top: 5px;
+  font-size: 15px;
+  text-transform: capitalize;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  height: 30px;
+}
+
+.swal2-container {
+  z-index: 20000 !important;
+}
+
+
+#allergy-List{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+#edit-Btn{
+  background-color:#294e70 ;
+  padding: 3px 5px;
+  text-transform: capitalize;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  height: 30px;
+}
+
+#edit-Btn2{
+  background-color:#294e70 ;
+  padding: 0;
+  padding-top: 5px;
+  font-size: 15px;
+  text-transform: capitalize;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  height: 30px;
+}
+
+
+#drop-Drown{
+  color: red;
+  margin-left: -230px;
+  padding-top: 5px;
+  height: 10px;
+  width: 280px;
 }
